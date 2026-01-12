@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>জিম ক্লাব ট্যুরিজম - পশ্চিমবঙ্গের দর্শনীয় স্থান</title>
+    <title>জিম ক্লাব ট্যুরিজম - আসন্ন ভ্রমণ: দুধিয়া</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -30,7 +30,7 @@
         
         /* হেডার স্টাইল */
         header {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1548013146-72479768bada?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80');
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80');
             background-size: cover;
             background-position: center;
             color: white;
@@ -120,190 +120,194 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
         
-        /* সেকশন স্টাইল */
-        section {
+        /* আসন্ন ভ্রমণ সেকশন */
+        .upcoming-trip {
+            background-color: #e8f4fc;
             padding: 80px 0;
         }
         
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: #2c3e50;
-            margin-bottom: 15px;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            width: 70px;
-            height: 4px;
-            background-color: #f8b400;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .section-title p {
-            color: #7f8c8d;
-            max-width: 700px;
+        .trip-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            max-width: 900px;
             margin: 0 auto;
-            font-size: 18px;
         }
         
-        /* পশ্চিমবঙ্গের দর্শনীয় স্থান */
-        .wb-tourist-spots {
-            background-color: #f0f7ff;
-        }
-        
-        .spots-categories {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-bottom: 50px;
-        }
-        
-        .category-btn {
-            padding: 12px 30px;
-            background-color: white;
-            border: 2px solid #4a9cdb;
-            color: #4a9cdb;
-            border-radius: 30px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .category-btn.active, .category-btn:hover {
-            background-color: #4a9cdb;
+        .trip-header {
+            background: linear-gradient(135deg, #4a9cdb 0%, #2c3e50 100%);
             color: white;
+            padding: 30px;
+            text-align: center;
         }
         
-        .spots-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        .trip-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .trip-date {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #f8b400;
+        }
+        
+        .trip-content {
+            padding: 40px;
+            display: flex;
+            flex-wrap: wrap;
             gap: 30px;
-            margin-bottom: 50px;
         }
         
-        .spot-card {
-            background-color: white;
+        .trip-image {
+            flex: 1;
+            min-width: 300px;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
         
-        .spot-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-        }
-        
-        .spot-img {
-            height: 220px;
-            overflow: hidden;
-        }
-        
-        .spot-img img {
+        .trip-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s;
         }
         
-        .spot-card:hover .spot-img img {
-            transform: scale(1.05);
-        }
-        
-        .spot-info {
-            padding: 25px;
-        }
-        
-        .spot-info h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: #2c3e50;
-        }
-        
-        .spot-location {
-            color: #4a9cdb;
-            font-weight: 600;
-            margin-bottom: 15px;
-            display: block;
-        }
-        
-        .spot-info p {
-            color: #7f8c8d;
-            margin-bottom: 20px;
-            font-size: 16px;
-        }
-        
-        .spot-type {
-            display: inline-block;
-            padding: 5px 15px;
-            background-color: #e8f7ef;
-            color: #27ae60;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-right: 10px;
-            margin-bottom: 10px;
-        }
-        
-        .hill {
-            background-color: #e8f7ef;
-            color: #27ae60;
-        }
-        
-        .sea {
-            background-color: #e8f4fc;
-            color: #4a9cdb;
-        }
-        
-        .historical {
-            background-color: #f9ebdf;
-            color: #e67e22;
-        }
-        
-        .wildlife {
-            background-color: #f4ecf7;
-            color: #8e44ad;
-        }
-        
-        /* বুকিং সেকশন */
-        .booking-section {
-            padding: 80px 0;
-            background-color: white;
-        }
-        
-        .booking-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 40px;
-            align-items: flex-start;
-        }
-        
-        .booking-form-container {
+        .trip-details {
             flex: 1;
             min-width: 300px;
-            background-color: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-            border: 1px solid #eaeaea;
         }
         
-        .booking-form-container h3 {
+        .trip-details h3 {
             color: #2c3e50;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             font-size: 1.8rem;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #f8b400;
+        }
+        
+        .trip-details p {
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: #555;
+        }
+        
+        .price-list {
+            margin-top: 25px;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #f8b400;
+        }
+        
+        .price-list h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .price-item:last-child {
+            border-bottom: none;
+        }
+        
+        .price-category {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .price-amount {
+            font-weight: 700;
+            color: #27ae60;
+            font-size: 1.2rem;
+        }
+        
+        .trip-booking {
+            margin-top: 30px;
             text-align: center;
+        }
+        
+        .book-now-btn {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 8px 20px rgba(39, 174, 96, 0.3);
+        }
+        
+        .book-now-btn:hover {
+            background-color: #2ecc71;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(39, 174, 96, 0.4);
+        }
+        
+        /* বুকিং ফর্ম মডাল */
+        .booking-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, #4a9cdb 0%, #2c3e50 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px 15px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-header h3 {
+            font-size: 1.8rem;
+            margin: 0;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close-modal:hover {
+            color: #f8b400;
+        }
+        
+        .modal-body {
+            padding: 30px;
         }
         
         .form-group {
@@ -350,33 +354,70 @@
             background-color: #ffcc33;
         }
         
-        .booking-info {
-            flex: 1;
-            min-width: 300px;
-            background-color: #f8f9fa;
-            padding: 40px;
-            border-radius: 15px;
-            border: 1px solid #eaeaea;
-        }
-        
-        .booking-info h3 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-        }
-        
-        .info-box {
+        /* অন্যান্য ভ্রমণ */
+        .other-trips {
+            padding: 80px 0;
             background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
         
-        .info-box h4 {
-            color: #4a9cdb;
+        .trips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .other-trip-card {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .other-trip-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .other-trip-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .other-trip-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .other-trip-card:hover .other-trip-img img {
+            transform: scale(1.05);
+        }
+        
+        .other-trip-info {
+            padding: 25px;
+        }
+        
+        .other-trip-info h4 {
+            font-size: 1.5rem;
+            color: #2c3e50;
             margin-bottom: 10px;
-            font-size: 1.3rem;
+        }
+        
+        .other-trip-date {
+            color: #4a9cdb;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .other-trip-price {
+            color: #27ae60;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-top: 10px;
         }
         
         /* এজেন্সি ইনফো */
@@ -500,6 +541,20 @@
             font-size: 0.9rem;
         }
         
+        /* বাংলা ফন্ট স্টাইল */
+        .bengali-text {
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+        
+        .btn-bengali {
+            font-family: 'Hind Siliguri', sans-serif;
+            font-weight: 600;
+        }
+        
         /* রেসপনসিভ */
         @media (max-width: 768px) {
             .hero h1 {
@@ -516,80 +571,24 @@
                 cursor: pointer;
             }
             
-            .section-title h2 {
+            .trip-header h2 {
                 font-size: 2rem;
+            }
+            
+            .trip-content {
+                flex-direction: column;
             }
             
             .agency-details, .agency-image {
                 padding-right: 0;
                 margin-bottom: 30px;
             }
-            
-            .booking-form-container, .booking-info {
-                min-width: 100%;
-            }
         }
         
-        /* মোবাইল মেনু */
-        .mobile-menu {
-            display: none;
-        }
-        
-        .mobile-menu-active {
-            display: block;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.95);
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .mobile-menu-active .nav-links {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .mobile-menu-active .nav-links li {
-            margin: 15px 0;
-        }
-        
-        .mobile-menu-active .nav-links a {
-            font-size: 1.5rem;
-        }
-        
-        .close-menu {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-        }
-        
-        /* বাংলা ফন্ট স্টাইল */
-        .bengali-text {
-            font-family: 'Hind Siliguri', sans-serif;
-        }
-        
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Hind Siliguri', sans-serif;
-        }
-        
-        .btn-bengali {
-            font-family: 'Hind Siliguri', sans-serif;
-            font-weight: 600;
-        }
-        
-        /* হিডেন ক্লাস */
-        .hidden {
-            display: none;
+        /* হাইলাইট */
+        .highlight {
+            color: #f8b400;
+            font-weight: 700;
         }
     </style>
 </head>
@@ -600,8 +599,8 @@
             <div class="logo">জিম <span>ক্লাব</span> ট্যুরিজম</div>
             <ul class="nav-links">
                 <li><a href="#home">হোম</a></li>
-                <li><a href="#spots">দর্শনীয় স্থান</a></li>
-                <li><a href="#booking">বুকিং</a></li>
+                <li><a href="#upcoming">আসন্ন ভ্রমণ</a></li>
+                <li><a href="#booking" id="bookingLink">বুকিং</a></li>
                 <li><a href="#agency">আমাদের সম্পর্কে</a></li>
                 <li><a href="#contact">যোগাযোগ</a></li>
             </ul>
@@ -611,247 +610,176 @@
         </nav>
         
         <div class="hero">
-            <h1 class="bengali-text">পশ্চিমবঙ্গের সৌন্দর্য আবিষ্কার করুন</h1>
-            <p class="bengali-text">দার্জিলিং এর চা বাগান থেকে সুন্দরবনের ম্যানগ্রোভ বন, সন্দেশের শহর থেকে কালীঘাটের মন্দির - পশ্চিমবঙ্গের বৈচিত্র্যময় সৌন্দর্য উপভোগ করুন।</p>
-            <a href="#spots" class="cta-button btn-bengali">দর্শনীয় স্থান দেখুন</a>
+            <h1 class="bengali-text">দুধিয়া ভ্রমণ: ৩১ জানুয়ারি</h1>
+            <p class="bengali-text">জিম ক্লাব ট্যুরিজম এর বিশেষ আয়োজন: দুধিয়া, পশ্চিমবঙ্গ। প্রকৃতির কোলে অনবদ্য অভিজ্ঞতার জন্য এখনই বুক করুন!</p>
+            <a href="#upcoming" class="cta-button btn-bengali">বিস্তারিত দেখুন</a>
         </div>
     </header>
 
-    <!-- পশ্চিমবঙ্গের দর্শনীয় স্থান -->
-    <section id="spots" class="wb-tourist-spots">
+    <!-- আসন্ন ভ্রমণ সেকশন -->
+    <section id="upcoming" class="upcoming-trip">
         <div class="container">
-            <div class="section-title">
-                <h2 class="bengali-text">পশ্চিমবঙ্গের দর্শনীয় স্থান</h2>
-                <p class="bengali-text">পশ্চিমবঙ্গের বিখ্যাত ও অপূর্ব সুন্দর দর্শনীয় স্থানগুলি ঘুরে দেখুন</p>
-            </div>
-            
-            <div class="spots-categories">
-                <button class="category-btn active btn-bengali" data-category="all">সব স্থান</button>
-                <button class="category-btn btn-bengali" data-category="hill">পাহাড়ি অঞ্চল</button>
-                <button class="category-btn btn-bengali" data-category="sea">সমুদ্র সৈকত</button>
-                <button class="category-btn btn-bengali" data-category="historical">ঐতিহাসিক স্থান</button>
-                <button class="category-btn btn-bengali" data-category="wildlife">বন্যপ্রাণী</button>
-            </div>
-            
-            <div class="spots-grid">
-                <!-- দার্জিলিং -->
-                <div class="spot-card" data-category="hill">
-                    <div class="spot-img">
-                        <img src="https://images.unsplash.com/photo-1548013146-72479768bada?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="দার্জিলিং">
-                    </div>
-                    <div class="spot-info">
-                        <h3 class="bengali-text">দার্জিলিং</h3>
-                        <span class="spot-location">দার্জিলিং জেলা</span>
-                        <p class="bengali-text">"পাহাড়ের রানী" নামে পরিচিত দার্জিলিং বিখ্যাত তার চা বাগান, কাঞ্চনজঙ্ঘার দৃশ্য এবং টয় ট্রেনের জন্য।</p>
-                        <span class="spot-type hill">পাহাড়ি অঞ্চল</span>
-                        <span class="spot-type historical">ঐতিহাসিক</span>
-                    </div>
+            <div class="trip-card">
+                <div class="trip-header">
+                    <h2 class="bengali-text">আসন্ন ভ্রমণ: দুধিয়া, পশ্চিমবঙ্গ</h2>
+                    <div class="trip-date bengali-text">📅 তারিখ: ৩১ জানুয়ারি, ২০২৫</div>
                 </div>
                 
-                <!-- কলকাতা -->
-                <div class="spot-card" data-category="historical">
-                    <div class="spot-img">
-                        <img src="https://images.unsplash.com/photo-1596176530529-78163a4f7af2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="কলকাতা">
+                <div class="trip-content">
+                    <div class="trip-image">
+                        <img src="https://images.unsplash.com/photo-1548013146-72479768bada?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80" alt="দুধিয়া ভ্রমণ">
                     </div>
-                    <div class="spot-info">
-                        <h3 class="bengali-text">কলকাতা</h3>
-                        <span class="spot-location">কলকাতা</span>
-                        <p class="bengali-text">"আনন্দের শহর" কলকাতায় আছে ভিক্টোরিয়া মেমোরিয়াল, হাওড়া ব্রিজ, কালীঘাট মন্দির এবং পার্ক স্ট্রিটের ঐতিহাসিক স্থান।</p>
-                        <span class="spot-type historical">ঐতিহাসিক</span>
-                    </div>
-                </div>
-                
-                <!-- সুন্দরবন -->
-                <div class="spot-card" data-category="wildlife sea">
-                    <div class="spot-img">
-                        <img src="https://images.unsplash.com/photo-1593693399746-69c6c3467f0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="সুন্দরবন">
-                    </div>
-                    <div class="spot-info">
-                        <h3 class="bengali-text">সুন্দরবন</h3>
-                        <span class="spot-location">দক্ষিণ ২৪ পরগনা জেলা</span>
-                        <p class="bengali-text">বিশ্বের বৃহত্তম ম্যানগ্রোভ বন এবং রয়েল বেঙ্গল টাইগারের আবাসস্থল। ইউনেস্কো বিশ্ব ঐতিহ্যবাহী স্থান।</p>
-                        <span class="spot-type wildlife">বন্যপ্রাণী</span>
-                        <span class="spot-type sea">সমুদ্র</span>
-                    </div>
-                </div>
-                
-                <!-- শিলিগুড়ি -->
-                <div class="spot-card" data-category="hill">
-                    <div class="spot-img">
-                        <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="শিলিগুড়ি">
-                    </div>
-                    <div class="spot-info">
-                        <h3 class="bengali-text">শিলিগুড়ি</h3>
-                        <span class="spot-location">দার্জিলিং জেলা</span>
-                        <p class="bengali-text">উত্তরবঙ্গের প্রবেশদ্বার, মেচি নদীর তীরে অবস্থিত। সিঙ্গালিলা জাতীয় উদ্যান এবং মিরিক হ্রদের জন্য বিখ্যাত।</p>
-                        <span class="spot-type hill">পাহাড়ি অঞ্চল</span>
-                    </div>
-                </div>
-                
-                <!-- ডুয়ার্স -->
-                <div class="spot-card" data-category="hill wildlife">
-                    <div class="spot-img">
-                        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="ডুয়ার্স">
-                    </div>
-                    <div class="spot-info">
-                        <h3 class="bengali-text">ডুয়ার্স</h3>
-                        <span class="spot-location">জলপাইগুড়ি জেলা</span>
-                        <p class="bengali-text">সবুজ চা বাগান, বহমান নদী এবং সমৃদ্ধ জীববৈচিত্র্যের অঞ্চল। গরুমারা ও জলদাপাড়া জাতীয় উদ্যানের জন্য বিখ্যাত।</p>
-                        <span class="spot-type hill">পাহাড়ি অঞ্চল</span>
-                        <span class="spot-type wildlife">বন্যপ্রাণী</span>
-                    </div>
-                </div>
-                
-                <!-- দিঘা -->
-                <div class="spot-card" data-category="sea">
-                    <div class="spot-img">
-                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1173&q=80" alt="দিঘা">
-                    </div>
-                    <div class="spot-info">
-                        <h3 class="bengali-text">দিঘা</h3>
-                        <span class="spot-location">পূর্ব মেদিনীপুর জেলা</span>
-                        <p class="bengali-text">পশ্চিমবঙ্গের সবচেয়ে জনপ্রিয় সমুদ্র সৈকত। লাল কাঁকড়া, ঝিনুক এবং সুন্দর সূর্যাস্তের জন্য বিখ্যাত।</p>
-                        <span class="spot-type sea">সমুদ্র সৈকত</span>
-                    </div>
-                </div>
-                
-                <!-- বকখালি -->
-                <div class="spot-card" data-category="sea wildlife">
-                    <div class="spot-img">
-                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="বকখালি">
-                    </div>
-                    <div class="spot-info">
-                        <h3 class="bengali-text">বকখালি</h3>
-                        <span class="spot-location">দক্ষিণ ২৪ পরগনা জেলা</span>
-                        <p class="bengali-text">শান্ত সমুদ্র সৈকত এবং কাছেই আছে ফ্রেজারগঞ্জের কুমির প্রকল্প। পাখি পর্যবেক্ষণের জন্য আদর্শ স্থান।</p>
-                        <span class="spot-type sea">সমুদ্র সৈকত</span>
-                        <span class="spot-type wildlife">বন্যপ্রাণী</span>
-                    </div>
-                </div>
-                
-                <!-- মালদা -->
-                <div class="spot-card" data-category="historical">
-                    <div class="spot-img">
-                        <img src="https://images.unsplash.com/photo-1528181304800-259b08848526?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="মালদা">
-                    </div>
-                    <div class="spot-info">
-                        <h3 class="bengali-text">মালদা (গৌড়)</h3>
-                        <span class="spot-location">মালদা জেলা</span>
-                        <p class="bengali-text">প্রাচীন বাংলার রাজধানী গৌড়ের ধ্বংসাবশেষ, আদিনা মসজিদ, ফিরোজ মিনার এবং বাংলার আমের জন্য বিখ্যাত।</p>
-                        <span class="spot-type historical">ঐতিহাসিক</span>
+                    
+                    <div class="trip-details">
+                        <h3 class="bengali-text">দুধিয়া ভ্রমণ সম্পর্কে</h3>
+                        <p class="bengali-text">দুধিয়া পশ্চিমবঙ্গের একটি মনোরম পাহাড়ি অঞ্চল, যা প্রকৃতিপ্রেমীদের জন্য আদর্শ গন্তব্য। সবুজ পাহাড়, মেঘের খেলা এবং নির্মল বাতাস আপনাকে মোহিত করবেই।</p>
+                        
+                        <p class="bengali-text"><strong>ভ্রমণ সুবিধা:</strong></p>
+                        <p class="bengali-text">• আরামদায়ক পরিবহন ব্যবস্থা</p>
+                        <p class="bengali-text">• অভিজ্ঞ গাইড সার্ভিস</p>
+                        <p class="bengali-text">• মধ্যাহ্নভোজের ব্যবস্থা</p>
+                        <p class="bengali-text">• ফটোগ্রাফি সুযোগ</p>
+                        <p class="bengali-text">• নিরাপত্তা ব্যবস্থা</p>
+                        
+                        <div class="price-list">
+                            <h4 class="bengali-text">ভাড়া কাঠামো</h4>
+                            <div class="price-item">
+                                <span class="price-category bengali-text">প্রাপ্তবয়স্ক (১২ বছর ঊর্ধ্ব)</span>
+                                <span class="price-amount">₹১,৩০০/-</span>
+                            </div>
+                            <div class="price-item">
+                                <span class="price-category bengali-text">ছাত্র (আইডি সহ)</span>
+                                <span class="price-amount">₹১,২০০/-</span>
+                            </div>
+                            <div class="price-item">
+                                <span class="price-category bengali-text">শিশু (৫-১২ বছর)</span>
+                                <span class="price-amount">₹১,১০০/-</span>
+                            </div>
+                            <div class="price-item">
+                                <span class="price-category bengali-text">শিশু (৫ বছরের নিচে)</span>
+                                <span class="price-amount">₹১,০০০/-</span>
+                            </div>
+                        </div>
+                        
+                        <div class="trip-booking">
+                            <button class="book-now-btn btn-bengali" onclick="openBookingModal()">এখনই বুক করুন</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- বুকিং সেকশন -->
-    <section id="booking" class="booking-section">
-        <div class="container">
-            <div class="section-title">
-                <h2 class="bengali-text">ট্রিপ বুকিং করুন</h2>
-                <p class="bengali-text">পশ্চিমবঙ্গের যেকোনো দর্শনীয় স্থানে ভ্রমণের জন্য এখনই বুকিং করুন</p>
+    <!-- বুকিং ফর্ম মডাল -->
+    <div id="bookingModal" class="booking-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="bengali-text">দুধিয়া ভ্রমণ বুকিং</h3>
+                <button class="close-modal" onclick="closeBookingModal()">&times;</button>
             </div>
             
-            <div class="booking-container">
-                <div class="booking-form-container">
-                    <h3 class="bengali-text">বুকিং ফর্ম</h3>
-                    <form id="bookingForm">
-                        <div class="form-group">
-                            <label for="name" class="bengali-text">পুরো নাম *</label>
-                            <input type="text" id="name" name="name" required placeholder="আপনার পুরো নাম লিখুন">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email" class="bengali-text">ইমেইল ঠিকানা *</label>
-                            <input type="email" id="email" name="email" required placeholder="আপনার ইমেইল ঠিকানা লিখুন">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="phone" class="bengali-text">ফোন নম্বর *</label>
-                            <input type="tel" id="phone" name="phone" required placeholder="আপনার ফোন নম্বর লিখুন">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="destination" class="bengali-text">গন্তব্য নির্বাচন করুন *</label>
-                            <select id="destination" name="destination" required>
-                                <option value="">একটি গন্তব্য নির্বাচন করুন</option>
-                                <option value="darjeeling">দার্জিলিং</option>
-                                <option value="kolkata">কলকাতা</option>
-                                <option value="sundarban">সুন্দরবন</option>
-                                <option value="siliguri">শিলিগুড়ি</option>
-                                <option value="dooars">ডুয়ার্স</option>
-                                <option value="digha">দিঘা</option>
-                                <option value="bakkhali">বকখালি</option>
-                                <option value="malda">মালদা (গৌড়)</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="travelDate" class="bengali-text">ভ্রমণের তারিখ *</label>
-                            <input type="date" id="travelDate" name="travelDate" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="duration" class="bengali-text">ভ্রমণের মেয়াদ *</label>
-                            <select id="duration" name="duration" required>
-                                <option value="1">১ দিন</option>
-                                <option value="2">২ দিন ১ রাত</option>
-                                <option value="3">৩ দিন ২ রাত</option>
-                                <option value="4">৪ দিন ৩ রাত</option>
-                                <option value="5">৫+ দিন</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="travelers" class="bengali-text">ভ্রমণকারীর সংখ্যা *</label>
-                            <select id="travelers" name="travelers" required>
-                                <option value="1">১ জন</option>
-                                <option value="2">২ জন</option>
-                                <option value="3">৩ জন</option>
-                                <option value="4">৪ জন</option>
-                                <option value="5">৫+ জন</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="busService" class="bengali-text">বাস সার্ভিস প্রয়োজন?</label>
-                            <select id="busService" name="busService">
-                                <option value="no">না</option>
-                                <option value="yes">হ্যাঁ</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message" class="bengali-text">অতিরিক্ত তথ্য (ঐচ্ছিক)</label>
-                            <textarea id="message" name="message" rows="3" placeholder="আপনার যেকোনো বিশেষ প্রয়োজনীয়তা লিখুন"></textarea>
-                        </div>
-                        
-                        <button type="submit" class="submit-btn btn-bengali">বুকিং কনফার্ম করুন</button>
-                    </form>
+            <div class="modal-body">
+                <form id="bookingForm">
+                    <div class="form-group">
+                        <label for="name" class="bengali-text">পুরো নাম *</label>
+                        <input type="text" id="name" name="name" required placeholder="আপনার পুরো নাম লিখুন">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="bengali-text">ইমেইল ঠিকানা *</label>
+                        <input type="email" id="email" name="email" required placeholder="আপনার ইমেইল ঠিকানা লিখুন">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone" class="bengali-text">ফোন নম্বর *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="আপনার ফোন নম্বর লিখুন">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="category" class="bengali-text">বয়স ক্যাটাগরি *</label>
+                        <select id="category" name="category" required>
+                            <option value="">বয়স ক্যাটাগরি নির্বাচন করুন</option>
+                            <option value="adult">প্রাপ্তবয়স্ক (₹১,৩০০/-)</option>
+                            <option value="student">ছাত্র (₹১,২০০/-)</option>
+                            <option value="child_5_12">শিশু (৫-১২ বছর) (₹১,১০০/-)</option>
+                            <option value="child_below_5">শিশু (৫ বছরের নিচে) (₹১,০০০/-)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="travelers" class="bengali-text">ভ্রমণকারীর সংখ্যা *</label>
+                        <select id="travelers" name="travelers" required>
+                            <option value="1">১ জন</option>
+                            <option value="2">২ জন</option>
+                            <option value="3">৩ জন</option>
+                            <option value="4">৪ জন</option>
+                            <option value="5">৫+ জন</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="payment" class="bengali-text">পেমেন্ট মাধ্যম *</label>
+                        <select id="payment" name="payment" required>
+                            <option value="">পেমেন্ট মাধ্যম নির্বাচন করুন</option>
+                            <option value="cash">নগদ</option>
+                            <option value="online">অনলাইন পেমেন্ট</option>
+                            <option value="bank">ব্যাংক ট্রান্সফার</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message" class="bengali-text">অতিরিক্ত তথ্য (ঐচ্ছিক)</label>
+                        <textarea id="message" name="message" rows="3" placeholder="আপনার যেকোনো বিশেষ প্রয়োজনীয়তা লিখুন"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn btn-bengali">বুকিং কনফার্ম করুন</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- অন্যান্য আসন্ন ভ্রমণ -->
+    <section class="other-trips">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="bengali-text">অন্যান্য আসন্ন ভ্রমণ</h2>
+                <p class="bengali-text">জিম ক্লাব ট্যুরিজম এর অন্যান্য বিশেষ ভ্রমণের তথ্য</p>
+            </div>
+            
+            <div class="trips-grid">
+                <div class="other-trip-card">
+                    <div class="other-trip-img">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80" alt="দিঘা ভ্রমণ">
+                    </div>
+                    <div class="other-trip-info">
+                        <h4 class="bengali-text">দিঘা সমুদ্র সৈকত</h4>
+                        <span class="other-trip-date bengali-text">১৫ ফেব্রুয়ারি, ২০২৫</span>
+                        <p class="bengali-text">সমুদ্রের অপার সৌন্দর্য উপভোগ করুন দিঘায়। বিশেষ মূল্যে ২ দিন ১ রাতের প্যাকেজ।</p>
+                        <div class="other-trip-price bengali-text">শুরু হচ্ছে ₹২,৫০০/- থেকে</div>
+                    </div>
                 </div>
                 
-                <div class="booking-info">
-                    <h3 class="bengali-text">বুকিং তথ্য</h3>
-                    
-                    <div class="info-box">
-                        <h4 class="bengali-text">বাস সার্ভিস</h4>
-                        <p class="bengali-text">জিম ক্লাব ট্যুরিজমের নিজস্ব বাস ফ্লিট আছে। আমরা গ্রুপ ট্যুর এবং পরিবারের জন্য আরামদায়ক এসি/নন-এসি বাস সার্ভিস দিই।</p>
+                <div class="other-trip-card">
+                    <div class="other-trip-img">
+                        <img src="https://images.unsplash.com/photo-1548013146-72479768bada?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80" alt="দার্জিলিং ভ্রমণ">
                     </div>
-                    
-                    <div class="info-box">
-                        <h4 class="bengali-text">গাইড সার্ভিস</h4>
-                        <p class="bengali-text">প্রতিটি ট্যুরে অভিজ্ঞ গাইড সরবরাহ করা হয় যারা স্থানীয় ইতিহাস, সংস্কৃতি এবং দর্শনীয় স্থান সম্পর্কে বিস্তারিত জানান।</p>
+                    <div class="other-trip-info">
+                        <h4 class="bengali-text">দার্জিলিং পাহাড়</h4>
+                        <span class="other-trip-date bengali-text">২৮ ফেব্রুয়ারি, ২০২৫</span>
+                        <p class="bengali-text">পাহাড়ের রানী দার্জিলিং এ ৩ দিন ২ রাতের বিশেষ ট্যুর। কাঞ্চনজঙ্ঘার অপার দৃশ্য উপভোগ করুন।</p>
+                        <div class="other-trip-price bengali-text">শুরু হচ্ছে ₹৪,৫০০/- থেকে</div>
                     </div>
-                    
-                    <div class="info-box">
-                        <h4 class="bengali-text">হোটেল বুকিং</h4>
-                        <p class="bengali-text">বাজেট থেকে লাক্সারি পর্যন্ত বিভিন্ন রকমের হোটেল বুকিংয়ের ব্যবস্থা করি। সব হোটেল পূর্বে যাচাই করা হয়।</p>
+                </div>
+                
+                <div class="other-trip-card">
+                    <div class="other-trip-img">
+                        <img src="https://images.unsplash.com/photo-1593693399746-69c6c3467f0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80" alt="সুন্দরবন ভ্রমণ">
                     </div>
-                    
-                    <div class="info-box">
-                        <h4 class="bengali-text">ক্যানসেলেশন পলিসি</h4>
-                        <p class="bengali-text">ভ্রমণের ৭ দিন আগে ক্যানসেল করলে সম্পূর্ণ টাকা ফেরত। ৩ দিন আগে ক্যানসেল করলে ৫০% টাকা ফেরত।</p>
+                    <div class="other-trip-info">
+                        <h4 class="bengali-text">সুন্দরবন অভিযান</h4>
+                        <span class="other-trip-date bengali-text">১০ মার্চ, ২০২৫</span>
+                        <p class="bengali-text">বিশ্বের বৃহত্তম ম্যানগ্রোভ বন সুন্দরবনে ২ দিনের বিশেষ অভিযান। রয়েল বেঙ্গল টাইগার দেখার সুযোগ।</p>
+                        <div class="other-trip-price bengali-text">শুরু হচ্ছে ₹৩,৮০০/- থেকে</div>
                     </div>
                 </div>
             </div>
@@ -864,9 +792,9 @@
             <div class="agency-details">
                 <h3 class="bengali-text">জিম ক্লাব ট্যুরিজম সম্পর্কে</h3>
                 <p class="bengali-text"><i class="fas fa-map-marker-alt"></i> <strong>ঠিকানা:</strong> গ্রাম - সানছিয়া, ডাকঘর - গঙ্গাদেবী, জেলা - মালদা, পশ্চিমবঙ্গ, ভারত</p>
-                <p class="bengali-text"><i class="fas fa-phone"></i> <strong>ফোন:</strong> +৯১ ৯৮৭৬৫ ৪৩২১০, +৯১ ৯০১২৩ ৪৫৬৭৮</p>
-                <p class="bengali-text"><i class="fas fa-envelope"></i> <strong>ইমেইল:</strong> info@gymclubtourism.com, booking@gymclubtourism.com</p>
-                <p class="bengali-text"><i class="fas fa-bus"></i> <strong>বাস সার্ভিস:</strong> আমরা গ্রুপ ট্যুর এবং স্থানীয় পরিবহনের জন্য আরামদায়ক এসি/নন-এসি বাস পরিষেবা প্রদান করি।</p>
+                <p class="bengali-text"><i class="fas fa-phone"></i> <strong>ফোন:</strong> +৯১ ৯৮৭৬৫ ৪৩২১০</p>
+                <p class="bengali-text"><i class="fas fa-envelope"></i> <strong>ইমেইল:</strong> info@gymclubtourism.com</p>
+                <p class="bengali-text"><i class="fas fa-bus"></i> <strong>বাস সার্ভিস:</strong> আমরা গ্রুপ ট্যুর এবং স্থানীয় পরিবহনের জন্য আরামদায়ক বাস পরিষেবা প্রদান করি।</p>
                 <p class="bengali-text"><i class="fas fa-clock"></i> <strong>অফিস সময়:</strong> সোমবার থেকে শনিবার, সকাল ৯:০০ থেকে সন্ধ্যা ৭:০০ পর্যন্ত</p>
                 <p class="bengali-text">১০ বছরের অভিজ্ঞতা নিয়ে, জিম ক্লাব ট্যুরিজম পশ্চিমবঙ্গের সবচেয়ে সুন্দর গন্তব্যগুলিতে বিশেষজ্ঞ। আমরা ব্যক্তি, পরিবার এবং গোষ্ঠীর জন্য কাস্টমাইজড প্যাকেজ অফার করি।</p>
             </div>
@@ -896,98 +824,68 @@
                     <h3 class="bengali-text">যোগাযোগের তথ্য</h3>
                     <p class="bengali-text"><i class="fas fa-map-marker-alt"></i> গ্রাম - সানছিয়া, ডাকঘর - গঙ্গাদেবী, জেলা - মালদা, পশ্চিমবঙ্গ</p>
                     <p class="bengali-text"><i class="fas fa-phone"></i> +৯১ ৯৮৭৬৫ ৪৩২১০ (বুকিং)</p>
-                    <p class="bengali-text"><i class="fas fa-phone"></i> +৯১ ৯০১২৩ ৪৫৬৭৮ (এনকোয়ারি)</p>
                     <p class="bengali-text"><i class="fas fa-envelope"></i> info@gymclubtourism.com</p>
                     <p class="bengali-text"><i class="fas fa-clock"></i> সোম-শনি: সকাল ৯:০০ - সন্ধ্যা ৭:০০</p>
                 </div>
                 
                 <div class="footer-column">
-                    <h3 class="bengali-text">পশ্চিমবঙ্গের স্থান</h3>
-                    <a href="#spots" class="bengali-text">দার্জিলিং</a>
-                    <a href="#spots" class="bengali-text">কলকাতা</a>
-                    <a href="#spots" class="bengali-text">সুন্দরবন</a>
-                    <a href="#spots" class="bengali-text">শিলিগুড়ি</a>
-                    <a href="#spots" class="bengali-text">ডুয়ার্স</a>
-                    <a href="#spots" class="bengali-text">দিঘা</a>
-                    <a href="#spots" class="bengali-text">বকখালি</a>
-                    <a href="#spots" class="bengali-text">মালদা</a>
+                    <h3 class="bengali-text">আসন্ন ভ্রমণ</h3>
+                    <a href="#upcoming" class="bengali-text">দুধিয়া - ৩১ জানুয়ারি</a>
+                    <a href="#" class="bengali-text">দিঘা - ১৫ ফেব্রুয়ারি</a>
+                    <a href="#" class="bengali-text">দার্জিলিং - ২৮ ফেব্রুয়ারি</a>
+                    <a href="#" class="bengali-text">সুন্দরবন - ১০ মার্চ</a>
                 </div>
                 
                 <div class="footer-column">
                     <h3 class="bengali-text">দ্রুত লিংক</h3>
                     <a href="#home" class="bengali-text">হোম</a>
-                    <a href="#spots" class="bengali-text">দর্শনীয় স্থান</a>
-                    <a href="#booking" class="bengali-text">বুকিং</a>
+                    <a href="#upcoming" class="bengali-text">আসন্ন ভ্রমণ</a>
+                    <a href="#booking" class="bengali-text" onclick="openBookingModal()">বুকিং</a>
                     <a href="#agency" class="bengali-text">আমাদের সম্পর্কে</a>
                     <a href="#contact" class="bengali-text">যোগাযোগ</a>
-                    <a href="#" class="bengali-text">বাস সার্ভিস</a>
-                    <a href="#" class="bengali-text">ট্যুর প্যাকেজ</a>
                 </div>
             </div>
             
             <div class="copyright">
-                <p class="bengali-text">© ২০২৩ জিম ক্লাব ট্যুরিজম। সর্বস্বত্ব সংরক্ষিত। | পশ্চিমবঙ্গ ভ্রমণকারীদের জন্য <i class="fas fa-heart" style="color: #e74c3c;"></i> সহ ডিজাইন করা হয়েছে</p>
+                <p class="bengali-text">© ২০২৫ জিম ক্লাব ট্যুরিজম। সর্বস্বত্ব সংরক্ষিত। | পশ্চিমবঙ্গ ভ্রমণকারীদের জন্য <i class="fas fa-heart" style="color: #e74c3c;"></i> সহ ডিজাইন করা হয়েছে</p>
             </div>
         </div>
     </footer>
 
-    <!-- মোবাইল মেনু ওভারলে -->
-    <div class="mobile-menu-active" id="mobileMenuOverlay" style="display: none;">
-        <div class="close-menu" id="closeMenu">
-            <i class="fas fa-times"></i>
-        </div>
-        <ul class="nav-links">
-            <li><a href="#home" class="mobile-nav-link bengali-text">হোম</a></li>
-            <li><a href="#spots" class="mobile-nav-link bengali-text">দর্শনীয় স্থান</a></li>
-            <li><a href="#booking" class="mobile-nav-link bengali-text">বুকিং</a></li>
-            <li><a href="#agency" class="mobile-nav-link bengali-text">আমাদের সম্পর্কে</a></li>
-            <li><a href="#contact" class="mobile-nav-link bengali-text">যোগাযোগ</a></li>
-        </ul>
-    </div>
-
     <script>
-        // মোবাইল মেনু টগল
-        const mobileMenuBtn = document.getElementById('mobileMenu');
-        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-        const closeMenuBtn = document.getElementById('closeMenu');
-        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+        // বুকিং মডাল ফাংশন
+        function openBookingModal() {
+            document.getElementById('bookingModal').style.display = 'flex';
+        }
         
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenuOverlay.style.display = 'flex';
+        function closeBookingModal() {
+            document.getElementById('bookingModal').style.display = 'none';
+        }
+        
+        // বুকিং লিঙ্ক ক্লিক করলে মডাল খুলবে
+        document.getElementById('bookingLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            openBookingModal();
         });
         
-        closeMenuBtn.addEventListener('click', () => {
-            mobileMenuOverlay.style.display = 'none';
-        });
-        
-        // লিংক ক্লিক করলে মোবাইল মেনু বন্ধ করুন
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenuOverlay.style.display = 'none';
-            });
-        });
-        
-        // স্মুথ স্ক্রোলিং
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+        // ফুটারের বুকিং লিঙ্কের জন্য
+        document.querySelectorAll('a[href="#booking"]').forEach(link => {
+            link.addEventListener('click', function(e) {
                 e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
+                openBookingModal();
             });
+        });
+        
+        // মডালের বাইরে ক্লিক করলে বন্ধ হবে
+        window.addEventListener('click', function(e) {
+            const modal = document.getElementById('bookingModal');
+            if (e.target === modal) {
+                closeBookingModal();
+            }
         });
         
         // বুকিং ফর্ম সাবমিশন
-        const bookingForm = document.getElementById('bookingForm');
-        bookingForm.addEventListener('submit', function(e) {
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
             // ফর্ম ডেটা সংগ্রহ
@@ -995,59 +893,56 @@
                 name: document.getElementById('name').value,
                 email: document.getElementById('email').value,
                 phone: document.getElementById('phone').value,
-                destination: document.getElementById('destination').value,
-                travelDate: document.getElementById('travelDate').value,
-                duration: document.getElementById('duration').value,
+                category: document.getElementById('category').value,
                 travelers: document.getElementById('travelers').value,
-                busService: document.getElementById('busService').value,
+                payment: document.getElementById('payment').value,
                 message: document.getElementById('message').value
             };
             
-            // এখানে আপনি সার্ভারে ডেটা সাবমিট করতে পারেন
-            // উদাহরণস্বরূপ, আমরা শুধু একটি এলার্ট দেখাব
-            const destinationText = document.getElementById('destination').options[document.getElementById('destination').selectedIndex].text;
-            alert(`ধন্যবাদ ${formData.name}! আপনার ${destinationText} ভ্রমণের বুকিং রিকোয়েস্ট সফলভাবে জমা হয়েছে। আমরা ২৪ ঘন্টার মধ্যে আপনার সাথে যোগাযোগ করব।`);
+            // মূল্য নির্ধারণ
+            let price = 0;
+            switch(formData.category) {
+                case 'adult':
+                    price = 1300;
+                    break;
+                case 'student':
+                    price = 1200;
+                    break;
+                case 'child_5_12':
+                    price = 1100;
+                    break;
+                case 'child_below_5':
+                    price = 1000;
+                    break;
+            }
             
-            // ফর্ম রিসেট
-            bookingForm.reset();
+            // মোট মূল্য
+            const totalPrice = price * parseInt(formData.travelers);
+            
+            // সাবমিশন এলার্ট
+            alert(`ধন্যবাদ ${formData.name}!\n\nআপনার দুধিয়া ভ্রমণের বুকিং সফলভাবে জমা হয়েছে।\n\nবুকিং বিবরণ:\n- ভ্রমণকারী: ${formData.travelers} জন\n- আনুমানিক মূল্য: ₹${totalPrice}/-\n- পেমেন্ট মাধ্যম: ${document.getElementById('payment').options[document.getElementById('payment').selectedIndex].text}\n\nআমরা ২৪ ঘন্টার মধ্যে আপনার সাথে যোগাযোগ করব।`);
+            
+            // ফর্ম রিসেট এবং মডাল বন্ধ
+            document.getElementById('bookingForm').reset();
+            closeBookingModal();
         });
         
-        // ভ্রমণের তারিখের জন্য ন্যূনতম তারিখ সেট করুন (আজকের তারিখ)
-        const today = new Date().toISOString().split('T')[0];
-        document.getElementById('travelDate').min = today;
-        
-        // দর্শনীয় স্থান ফিল্টারিং সিস্টেম
-        const categoryButtons = document.querySelectorAll('.category-btn');
-        const spotCards = document.querySelectorAll('.spot-card');
-        
-        categoryButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // সক্রিয় বাটন পরিবর্তন
-                categoryButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
+        // স্মুথ স্ক্রোলিং
+        document.querySelectorAll('a[href^="#"]:not([onclick])').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
                 
-                const selectedCategory = button.getAttribute('data-category');
-                
-                // কার্ড ফিল্টার করুন
-                spotCards.forEach(card => {
-                    const cardCategories = card.getAttribute('data-category');
-                    
-                    if (selectedCategory === 'all' || cardCategories.includes(selectedCategory)) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
-        
-        // পৃষ্ঠা লোড হলে বুকিং সেকশনে স্ক্রোল
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('booking') === 'true') {
-            setTimeout(() => {
-                document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
-            }, 500);
-        }
     </script>
 </body>
 </html>
