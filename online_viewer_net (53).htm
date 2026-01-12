@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>জিম ক্লাব ট্যুরিজম - বিশ্ব ভ্রমণ করুন আমাদের সাথে</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+        
+        body {
+            line-height: 1.8;
+            color: #333;
+            background-color: #f8f9fa;
+            direction: ltr;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* হেডার স্টাইল */
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1439066615861-d1af74d74000?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 20px 0;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: #f8b400;
+        }
+        
+        .logo span {
+            color: #4a9cdb;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            font-size: 18px;
+        }
+        
+        .nav-links a:hover {
+            color: #f8b400;
+        }
+        
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin-bottom: 30px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: #f8b400;
+            color: #333;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .cta-button:hover {
+            background-color: #ffcc33;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        
+        /* সেকশন স্টাইল */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 4px;
+            background-color: #f8b400;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title p {
+            color: #7f8c8d;
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 18px;
+        }
+        
+        /* ডেস্টিনেশন */
+        .destinations {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .destination-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .destination-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .destination-img {
+            height: 220px;
+            overflow: hidden;
+        }
+        
+        .destination-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .destination-card:hover .destination-img img {
+            transform: scale(1.05);
+        }
+        
+        .destination-info {
+            padding: 25px;
+        }
+        
+        .destination-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .destination-info p {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        
+        .destination-type {
+            display: inline-block;
+            padding: 5px 15px;
+            background-color: #e8f4fc;
+            color: #4a9cdb;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .mountain {
+            background-color: #e8f7ef;
+            color: #27ae60;
+        }
+        
+        .sea {
+            background-color: #e8f4fc;
+            color: #4a9cdb;
+        }
+        
+        /* এজেন্সি ইনফো */
+        .agency-info {
+            background-color: #2c3e50;
+            color: white;
+            padding: 60px 0;
+        }
+        
+        .agency-info .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .agency-details {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 30px;
+        }
+        
+        .agency-details h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #f8b400;
+        }
+        
+        .agency-details p {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .agency-details i {
+            margin-right: 10px;
+            color: #f8b400;
+        }
+        
+        .agency-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .agency-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* সার্ভিসেস */
+        .services {
+            background-color: #f8f9fa;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: white;
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            color: #f8b400;
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        /* বুকিং সেকশন */
+        .booking-section {
+            padding: 80px 0;
+            background-color: #f0f7ff;
+        }
+        
+        .booking-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: flex-start;
+        }
+        
+        .booking-form-container {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .booking-form-container h3 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 17px;
+        }
+        
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: #4a9cdb;
+            outline: none;
+        }
+        
+        .submit-btn {
+            background-color: #f8b400;
+            color: #333;
+            border: none;
+            padding: 18px 40px;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        
+        .submit-btn:hover {
+            background-color: #ffcc33;
+        }
+        
+        .iframe-container {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            min-height: 600px;
+        }
+        
+        .iframe-container iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+        }
+        
+        .iframe-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 600px;
+            padding: 30px;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+        
+        .iframe-placeholder i {
+            font-size: 4rem;
+            color: #4a9cdb;
+            margin-bottom: 20px;
+        }
+        
+        .iframe-placeholder h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        /* ফুটার */
+        footer {
+            background-color: #1a252f;
+            color: #ecf0f1;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+            padding-right: 20px;
+        }
+        
+        .footer-column h3 {
+            color: #f8b400;
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+        }
+        
+        .footer-column p, .footer-column a {
+            color: #bdc3c7;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 17px;
+        }
+        
+        .footer-column a:hover {
+            color: #f8b400;
+        }
+        
+        .social-icons {
+            display: flex;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #2c3e50;
+            border-radius: 50%;
+            margin-right: 10px;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: #f8b400;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #2c3e50;
+            color: #95a5a6;
+            font-size: 0.9rem;
+        }
+        
+        /* রেসপনসিভ */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .agency-details, .agency-image {
+                padding-right: 0;
+                margin-bottom: 30px;
+            }
+            
+            .booking-form-container, .iframe-container {
+                min-width: 100%;
+            }
+        }
+        
+        /* মোবাইল মেনু */
+        .mobile-menu {
+            display: none;
+        }
+        
+        .mobile-menu-active {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.95);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .mobile-menu-active .nav-links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .mobile-menu-active .nav-links li {
+            margin: 15px 0;
+        }
+        
+        .mobile-menu-active .nav-links a {
+            font-size: 1.5rem;
+        }
+        
+        .close-menu {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        
+        /* বাংলা ফন্ট স্টাইল */
+        .bengali-text {
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+        
+        .btn-bengali {
+            font-family: 'Hind Siliguri', sans-serif;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- হেডার ও নেভিগেশন -->
+    <header>
+        <nav>
+            <div class="logo">জিম <span>ক্লাব</span> ট্যুরিজম</div>
+            <ul class="nav-links">
+                <li><a href="#home">হোম</a></li>
+                <li><a href="#destinations">গন্তব্য</a></li>
+                <li><a href="#services">সেবাসমূহ</a></li>
+                <li><a href="#booking">বুকিং</a></li>
+                <li><a href="#agency">আমাদের সম্পর্কে</a></li>
+                <li><a href="#contact">যোগাযোগ</a></li>
+            </ul>
+            <div class="mobile-menu" id="mobileMenu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+        
+        <div class="hero">
+            <h1 class="bengali-text">আমাদের সাথে বিশ্ব ভ্রমণ করুন</h1>
+            <p class="bengali-text">অবিস্মরণীয় ভ্রমণ অভিজ্ঞতা উপভোগ করুন। জিম ক্লাব ট্যুরিজম এর সাথে সমুদ্র সৈকত থেকে পর্বতচূড়া পর্যন্ত অসাধারণ গন্তব্যস্থল ঘুরে দেখুন।</p>
+            <a href="#booking" class="cta-button btn-bengali">এখনই বুক করুন</a>
+        </div>
+    </header>
+
+    <!-- গন্তব্য সেকশন -->
+    <section id="destinations">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="bengali-text">জনপ্রিয় গন্তব্য</h2>
+                <p class="bengali-text">বিশ্বজুড়ে আমাদের নির্বাচিত অসাধারণ গন্তব্যস্থলগুলি ঘুরে দেখুন</p>
+            </div>
+            
+            <div class="destinations">
+                <!-- পর্বত গন্তব্য ১ -->
+                <div class="destination-card">
+                    <div class="destination-img">
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="সুইস আল্পস">
+                    </div>
+                    <div class="destination-info">
+                        <h3 class="bengali-text">সুইস আল্পস, সুইজারল্যান্ড</h3>
+                        <p class="bengali-text">বরফে ঢাকা পাহাড়, মনোরম গ্রাম এবং বিশ্বমানের স্কিইং সুবিধা সহ সুইস আল্পসের চমৎকার সৌন্দর্য উপভোগ করুন।</p>
+                        <span class="destination-type mountain">পর্বত</span>
+                    </div>
+                </div>
+                
+                <!-- সমুদ্র গন্তব্য ১ -->
+                <div class="destination-card">
+                    <div class="destination-img">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1173&q=80" alt="মালদ্বীপ সমুদ্র সৈকত">
+                    </div>
+                    <div class="destination-info">
+                        <h3 class="bengali-text">মালদ্বীপ দ্বীপপুঞ্জ</h3>
+                        <p class="bengali-text">ফিরোজা রঙের স্বচ্ছ জলে ঘেরা প্রাকৃতিক সাদা বালুর সৈকতে এই গ্রীষ্মমন্ডলীয় স্বর্গে বিশ্রাম নিন।</p>
+                        <span class="destination-type sea">সমুদ্র</span>
+                    </div>
+                </div>
+                
+                <!-- পর্বত গন্তব্য ২ -->
+                <div class="destination-card">
+                    <div class="destination-img">
+                        <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="রকি পর্বতমালা">
+                    </div>
+                    <div class="destination-info">
+                        <h3 class="bengali-text">রকি পর্বতমালা, কানাডা</h3>
+                        <p class="bengali-text">চমৎকার হ্রদ, হাইকিং ট্রেইল এবং প্রচুর বন্যপ্রাণী সহ কানাডিয়ান রকিজের বিশাল বনাঞ্চল অন্বেষণ করুন।</p>
+                        <span class="destination-type mountain">পর্বত</span>
+                    </div>
+                </div>
+                
+                <!-- সমুদ্র গন্তব্য ২ -->
+                <div class="destination-card">
+                    <div class="destination-img">
+                        <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="গ্রীক দ্বীপপুঞ্জ">
+                    </div>
+                    <div class="destination-info">
+                        <h3 class="bengali-text">সান্টোরিনি, গ্রীস</h3>
+                        <p class="bengali-text">গাঢ় নীল এজিয়ান সাগরের উপর নজর রাখা নীল গম্বুজ সহ আইকনিক সাদা ধোয়া ভবনগুলি আবিষ্কার করুন।</p>
+                        <span class="destination-type sea">সমুদ্র</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- বুকিং সেকশন -->
+    <section id="booking" class="booking-section">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="bengali-text">ট্রিপ বুকিং</h2>
+                <p class="bengali-text">আপনার স্বপ্নের ভ্রমণের জন্য এখনই বুকিং করুন</p>
+            </div>
+            
+            <div class="booking-container">
+                <div class="booking-form-container">
+                    <h3 class="bengali-text">বুকিং ফর্ম</h3>
+                    <form id="bookingForm">
+                        <div class="form-group">
+                            <label for="name" class="bengali-text">পুরো নাম *</label>
+                            <input type="text" id="name" name="name" required placeholder="আপনার পুরো নাম লিখুন">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="bengali-text">ইমেইল ঠিকানা *</label>
+                            <input type="email" id="email" name="email" required placeholder="আপনার ইমেইল ঠিকানা লিখুন">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone" class="bengali-text">ফোন নম্বর *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="আপনার ফোন নম্বর লিখুন">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="destination" class="bengali-text">গন্তব্য নির্বাচন করুন *</label>
+                            <select id="destination" name="destination" required>
+                                <option value="">একটি গন্তব্য নির্বাচন করুন</option>
+                                <option value="swiss_alps">সুইস আল্পস, সুইজারল্যান্ড</option>
+                                <option value="maldives">মালদ্বীপ দ্বীপপুঞ্জ</option>
+                                <option value="rocky_mountains">রকি পর্বতমালা, কানাডা</option>
+                                <option value="santorini">সান্টোরিনি, গ্রীস</option>
+                                <option value="darjeeling">দার্জিলিং, ভারত</option>
+                                <option value="cox_bazar">কক্সবাজার, বাংলাদেশ</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="travelDate" class="bengali-text">ভ্রমণের তারিখ *</label>
+                            <input type="date" id="travelDate" name="travelDate" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="travelers" class="bengali-text">ভ্রমণকারীর সংখ্যা *</label>
+                            <select id="travelers" name="travelers" required>
+                                <option value="1">১ জন</option>
+                                <option value="2">২ জন</option>
+                                <option value="3">৩ জন</option>
+                                <option value="4">৪ জন</option>
+                                <option value="5">৫+ জন</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="busService" class="bengali-text">বাস সার্ভিস প্রয়োজন?</label>
+                            <select id="busService" name="busService">
+                                <option value="no">না</option>
+                                <option value="yes">হ্যাঁ</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message" class="bengali-text">অতিরিক্ত তথ্য (ঐচ্ছিক)</label>
+                            <textarea id="message" name="message" rows="3" placeholder="আপনার যেকোনো বিশেষ প্রয়োজনীয়তা লিখুন"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn btn-bengali">বুকিং কনফার্ম করুন</button>
+                    </form>
+                </div>
+                
+                <div class="iframe-container">
+                    <div class="iframe-placeholder" id="iframePlaceholder">
+                        <i class="fas fa-external-link-alt"></i>
+                        <h4 class="bengali-text">বুকিং সিস্টেম</h4>
+                        <p class="bengali-text">আপনার বুকিং সিস্টেম iframe এ এখানে যোগ করুন।</p>
+                        <p class="bengali-text">আপনার নিজের বুকিং সিস্টেমের URL ব্যবহার করুন এবং এই স্থানধারক প্রতিস্থাপন করুন।</p>
+                    </div>
+                    <!-- আপনার বুকিং সিস্টেমের iframe এখানে যোগ করুন -->
+                    <!-- <iframe src="YOUR_BOOKING_SYSTEM_URL" frameborder="0"></iframe> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- এজেন্সি ইনফো সেকশন -->
+    <section id="agency" class="agency-info">
+        <div class="container">
+            <div class="agency-details">
+                <h3 class="bengali-text">জিম ক্লাব ট্যুরিজম সম্পর্কে</h3>
+                <p class="bengali-text"><i class="fas fa-map-marker-alt"></i> <strong>ঠিকানা:</strong> গ্রাম - সানছিয়া, ডাকঘর - গঙ্গাদেবী, জেলা - মালদা, পশ্চিমবঙ্গ, ভারত</p>
+                <p class="bengali-text"><i class="fas fa-phone"></i> <strong>ফোন:</strong> +৯১ ৯৮৭৬৫ ৪৩২১০</p>
+                <p class="bengali-text"><i class="fas fa-envelope"></i> <strong>ইমেইল:</strong> info@gymclubtourism.com</p>
+                <p class="bengali-text"><i class="fas fa-bus"></i> <strong>বাস সার্ভিস:</strong> আমরা গ্রুপ ট্যুর এবং স্থানীয় পরিবহনের জন্য আরামদায়ক বাস পরিষেবা প্রদান করি।</p>
+                <p class="bengali-text"><i class="fas fa-clock"></i> <strong>অফিস সময়:</strong> সোমবার থেকে শনিবার, সকাল ৯:০০ থেকে সন্ধ্যা ৭:০০ পর্যন্ত</p>
+                <p class="bengali-text">ভ্রমণ শিল্পে বছরের অভিজ্ঞতা নিয়ে, জিম ক্লাব ট্যুরিজম বিশ্বের সবচেয়ে সুন্দর গন্তব্যগুলিতে অবিস্মরণীয় যাত্রা তৈরি করতে বিশেষজ্ঞ। আমরা ব্যক্তি, পরিবার এবং গোষ্ঠীর জন্য কাস্টমাইজড প্যাকেজ অফার করি।</p>
+            </div>
+            <div class="agency-image">
+                <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="ট্রাভেল এজেন্সি অফিস">
+            </div>
+        </div>
+    </section>
+
+    <!-- সার্ভিসেস সেকশন -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="bengali-text">আমাদের সেবাসমূহ</h2>
+                <p class="bengali-text">আপনার যাত্রা মসৃণ এবং স্মরণীয় করতে আমরা ব্যাপক ভ্রমণ সমাধান অফার করি</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-plane"></i>
+                    </div>
+                    <h3 class="bengali-text">ফ্লাইট বুকিং</h3>
+                    <p class="bengali-text">আমরা সেরা এয়ারলাইন্সে প্রতিযোগিতামূলক মূল্যে অভ্যন্তরীণ এবং আন্তর্জাতিক ফ্লাইট ব্যবস্থা করি।</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-hotel"></i>
+                    </div>
+                    <h3 class="bengali-text">হোটেল রিজার্ভেশন</h3>
+                    <p class="bengali-text">যাচাইকৃত পর্যালোচনা এবং রেটিং সহ আপনার গন্তব্যে বিলাসবহুল থেকে বাজেট বাসস্থান।</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-bus"></i>
+                    </div>
+                    <h3 class="bengali-text">বাস সার্ভিস</h3>
+                    <p class="bengali-text">গ্রুপ ট্যুর এবং স্থানীয় দর্শনীয় স্থানগুলির জন্য আরামদায়ক এবং নির্ভরযোগ্য বাস পরিবহন।</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-passport"></i>
+                    </div>
+                    <h3 class="bengali-text">ট্যুর প্যাকেজ</h3>
+                    <p class="bengali-text">আপনার পছন্দ অনুযায়ী গাইড, খাবার এবং কার্যক্রম সহ কাস্টমাইজড ট্যুর প্যাকেজ।</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ফুটার -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3 class="bengali-text">জিম ক্লাব ট্যুরিজম</h3>
+                    <p class="bengali-text">বিশ্বের সবচেয়ে সুন্দর গন্তব্যগুলিতে অবিস্মরণীয় যাত্রার জন্য আপনার বিশ্বস্ত ভ্রমণ অংশীদার। আমরা আরামদায়ক বাস পরিষেবা সহ সমুদ্র এবং পর্বত ট্যুরে বিশেষজ্ঞ।</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="bengali-text">যোগাযোগের তথ্য</h3>
+                    <p class="bengali-text"><i class="fas fa-map-marker-alt"></i> গ্রাম - সানছিয়া, ডাকঘর - গঙ্গাদেবী, জেলা - মালদা, পশ্চিমবঙ্গ</p>
+                    <p class="bengali-text"><i class="fas fa-phone"></i> +৯১ ৯৮৭৬৫ ৪৩২১০</p>
+                    <p class="bengali-text"><i class="fas fa-envelope"></i> info@gymclubtourism.com</p>
+                    <p class="bengali-text"><i class="fas fa-clock"></i> সোম-শনি: সকাল ৯:০০ - সন্ধ্যা ৭:০০</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="bengali-text">দ্রুত লিংক</h3>
+                    <a href="#home" class="bengali-text">হোম</a>
+                    <a href="#destinations" class="bengali-text">গন্তব্য</a>
+                    <a href="#services" class="bengali-text">সেবাসমূহ</a>
+                    <a href="#booking" class="bengali-text">বুকিং</a>
+                    <a href="#agency" class="bengali-text">আমাদের সম্পর্কে</a>
+                    <a href="#contact" class="bengali-text">যোগাযোগ</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="bengali-text">জনপ্রিয় স্থান</h3>
+                    <a href="#" class="bengali-text">সুইস আল্পস</a>
+                    <a href="#" class="bengali-text">মালদ্বীপ দ্বীপপুঞ্জ</a>
+                    <a href="#" class="bengali-text">রকি পর্বতমালা</a>
+                    <a href="#" class="bengali-text">সান্টোরিনি, গ্রীস</a>
+                    <a href="#" class="bengali-text">দার্জিলিং, ভারত</a>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p class="bengali-text">© ২০২৩ জিম ক্লাব ট্যুরিজম। সর্বস্বত্ব সংরক্ষিত। | ভ্রমণকারীদের জন্য <i class="fas fa-heart" style="color: #e74c3c;"></i> সহ ডিজাইন করা হয়েছে</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- মোবাইল মেনু ওভারলে -->
+    <div class="mobile-menu-active" id="mobileMenuOverlay" style="display: none;">
+        <div class="close-menu" id="closeMenu">
+            <i class="fas fa-times"></i>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home" class="mobile-nav-link bengali-text">হোম</a></li>
+            <li><a href="#destinations" class="mobile-nav-link bengali-text">গন্তব্য</a></li>
+            <li><a href="#services" class="mobile-nav-link bengali-text">সেবাসমূহ</a></li>
+            <li><a href="#booking" class="mobile-nav-link bengali-text">বুকিং</a></li>
+            <li><a href="#agency" class="mobile-nav-link bengali-text">আমাদের সম্পর্কে</a></li>
+            <li><a href="#contact" class="mobile-nav-link bengali-text">যোগাযোগ</a></li>
+        </ul>
+    </div>
+
+    <script>
+        // মোবাইল মেনু টগল
+        const mobileMenuBtn = document.getElementById('mobileMenu');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        const closeMenuBtn = document.getElementById('closeMenu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuOverlay.style.display = 'flex';
+        });
+        
+        closeMenuBtn.addEventListener('click', () => {
+            mobileMenuOverlay.style.display = 'none';
+        });
+        
+        // লিংক ক্লিক করলে মোবাইল মেনু বন্ধ করুন
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuOverlay.style.display = 'none';
+            });
+        });
+        
+        // স্মুথ স্ক্রোলিং
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // বুকিং ফর্ম সাবমিশন
+        const bookingForm = document.getElementById('bookingForm');
+        bookingForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // ফর্ম ডেটা সংগ্রহ
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                destination: document.getElementById('destination').value,
+                travelDate: document.getElementById('travelDate').value,
+                travelers: document.getElementById('travelers').value,
+                busService: document.getElementById('busService').value,
+                message: document.getElementById('message').value
+            };
+            
+            // এখানে আপনি সার্ভারে ডেটা সাবমিট করতে পারেন
+            // উদাহরণস্বরূপ, আমরা শুধু একটি এলার্ট দেখাব
+            alert('ধন্যবাদ! আপনার বুকিং রিকোয়েস্ট সফলভাবে জমা হয়েছে। আমরা শীঘ্রই আপনার সাথে যোগাযোগ করব।');
+            
+            // ফর্ম রিসেট
+            bookingForm.reset();
+        });
+        
+        // ভ্রমণের তারিখের জন্য ন্যূনতম তারিখ সেট করুন (আজকের তারিখ)
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('travelDate').min = today;
+        
+        // iframe যোগ করার ফাংশন
+        function addBookingIframe(url) {
+            const iframeContainer = document.querySelector('.iframe-container');
+            const placeholder = document.getElementById('iframePlaceholder');
+            
+            // স্থানধারক সরান
+            iframeContainer.removeChild(placeholder);
+            
+            // iframe তৈরি করুন
+            const iframe = document.createElement('iframe');
+            iframe.src = url;
+            iframe.frameBorder = "0";
+            iframe.style.width = "100%";
+            iframe.style.height = "600px";
+            
+            // iframe যোগ করুন
+            iframeContainer.appendChild(iframe);
+        }
+        
+        // আপনার বুকিং সিস্টেমের URL এখানে যোগ করুন
+        // উদাহরণ: addBookingIframe('https://your-bookingsystem.com');
+    </script>
+</body>
+</html>
