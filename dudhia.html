@@ -269,6 +269,105 @@
             margin-bottom: 5px;
         }
         
+        /* Countdown Clock Styles */
+        .countdown-section {
+            background: linear-gradient(to right, #1e5799, #207cca);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 50px;
+        }
+        
+        .countdown-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ffcc00;
+        }
+        
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        .countdown-box {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 20px;
+            min-width: 120px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .countdown-value {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ffcc00;
+        }
+        
+        .countdown-label {
+            font-size: 1.1rem;
+            margin-top: 5px;
+        }
+        
+        .countdown-note {
+            font-size: 1.2rem;
+            margin-top: 15px;
+            color: #ffcc00;
+        }
+        
+        /* Journey Details Styles */
+        .journey-details {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        .journey-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .journey-item {
+            background-color: #f5f9ff;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #1e5799;
+        }
+        
+        .journey-item h3 {
+            color: #1e5799;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .journey-item ul {
+            list-style-type: none;
+            padding-left: 10px;
+        }
+        
+        .journey-item li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .journey-item li:before {
+            content: "•";
+            color: #1e5799;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
         footer {
             background-color: #1e5799;
             color: white;
@@ -341,6 +440,19 @@
             .hero p, .intro-text, .feature-card p, .visit-info > p {
                 font-size: 1rem;
             }
+            
+            .countdown-box {
+                min-width: 90px;
+                padding: 15px;
+            }
+            
+            .countdown-value {
+                font-size: 2.2rem;
+            }
+            
+            .countdown-label {
+                font-size: 0.9rem;
+            }
         }
         
         @media (max-width: 480px) {
@@ -362,6 +474,15 @@
             
             .section-title {
                 font-size: 1.6rem;
+            }
+            
+            .countdown-box {
+                min-width: 70px;
+                padding: 10px;
+            }
+            
+            .countdown-value {
+                font-size: 1.8rem;
             }
         }
     </style>
@@ -387,6 +508,79 @@
     </div>
     
     <div class="container">
+        <!-- Countdown Clock Section -->
+        <section class="countdown-section">
+            <h2 class="countdown-title">দূধিয়া ভ্রমণের জন্য কাউন্টডাউন</h2>
+            <div class="countdown-container">
+                <div class="countdown-box">
+                    <div class="countdown-value" id="days">00</div>
+                    <div class="countdown-label">দিন</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-value" id="hours">00</div>
+                    <div class="countdown-label">ঘন্টা</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-value" id="minutes">00</div>
+                    <div class="countdown-label">মিনিট</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-value" id="seconds">00</div>
+                    <div class="countdown-label">সেকেন্ড</div>
+                </div>
+            </div>
+            <div class="countdown-note">
+                <p>ভ্রমণ তারিখ: ৩১ জানুয়ারি ২০২৬, সময়: রাত ১০:৩০, যাত্রা শুরু: সাঁচিয়া দাদরম মোর থেকে</p>
+            </div>
+        </section>
+        
+        <!-- Journey Details Section -->
+        <section class="journey-section">
+            <h2 class="section-title">আপনার ভ্রমণ পরিকল্পনা</h2>
+            <div class="journey-details bengali-text">
+                <p>নিচে আপনার দূধিয়া ভ্রমণের সম্পূর্ণ পরিকল্পনা দেওয়া হল। অনুগ্রহ করে সময় ও মেনু সম্পর্কে নোট করুন:</p>
+                
+                <div class="journey-grid">
+                    <div class="journey-item">
+                        <h3><i class="fas fa-calendar-day"></i> যাত্রা দিন: ৩১ জানুয়ারি ২০২৬</h3>
+                        <ul>
+                            <li>যাত্রা শুরু: রাত ১০:৩০</li>
+                            <li>যাত্রা শুরু স্থান: সাঁচিয়া দাদরম মোর</li>
+                            <li>যাত্রা ধরণ: গাড়ী/বাস</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="journey-item">
+                        <h3><i class="fas fa-utensils"></i> দুপুরের খাবার (লাঞ্চ)</h3>
+                        <ul>
+                            <li>সাদা ভাত</li>
+                            <li>শাকাহারী ডাল</li>
+                            <li>মিক্সড সবজি</li>
+                            <li>মাছের তরকারি / হাঁড়ি মাটন</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="journey-item">
+                        <h3><i class="fas fa-coffee"></i> ব্রেকফাস্ট</h3>
+                        <ul>
+                            <li>মুড়ি</li>
+                            <li>আলু দম</li>
+                            <li>দার্জিলিং চা</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="journey-item">
+                        <h3><i class="fas fa-calendar-day"></i> প্রত্যাবর্তন দিন: ১ ফেব্রুয়ারি ২০২৬</h3>
+                        <ul>
+                            <li>প্রত্যাবর্তন সময়: বিকাল ৫:০০</li>
+                            <li>প্রত্যাবর্তন স্থান: দূধিয়া পর্যটন কেন্দ্র</li>
+                            <li>প্রত্যাশিত ফিরতি: সাঁচিয়া দাদরম মোর</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
         <section class="intro">
             <div class="intro-text bengali-text">
                 <h2 class="section-title">দূধিয়া সম্পর্কে</h2>
@@ -537,6 +731,39 @@
     </footer>
     
     <script>
+        // Countdown Timer Functionality
+        function updateCountdown() {
+            // Set the journey date: January 31, 2026 at 10:30 PM
+            const journeyDate = new Date('January 31, 2026 22:30:00').getTime();
+            const now = new Date().getTime();
+            const timeLeft = journeyDate - now;
+            
+            // If journey date has passed
+            if (timeLeft < 0) {
+                document.getElementById('days').innerHTML = '00';
+                document.getElementById('hours').innerHTML = '00';
+                document.getElementById('minutes').innerHTML = '00';
+                document.getElementById('seconds').innerHTML = '00';
+                return;
+            }
+            
+            // Calculate days, hours, minutes, seconds
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            
+            // Update the display
+            document.getElementById('days').innerHTML = days.toString().padStart(2, '0');
+            document.getElementById('hours').innerHTML = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').innerHTML = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').innerHTML = seconds.toString().padStart(2, '0');
+        }
+        
+        // Initial call and update every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+        
         // Simple image gallery interaction
         document.addEventListener('DOMContentLoaded', function() {
             const galleryItems = document.querySelectorAll('.gallery-item');
@@ -606,5 +833,4 @@
         });
     </script>
 </body>
-
 </html>
