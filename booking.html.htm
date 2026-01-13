@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Seat Booking with Passenger Names</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 1400px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            margin: 20px auto;
+        }
+        
+        .header {
+            background: linear-gradient(to right, #2c3e50, #4a6491);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-bottom: 5px solid #3498db;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .header h1 i {
+            font-size: 2rem;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0;
+        }
+        
+        .left-panel {
+            flex: 1;
+            min-width: 300px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-right: 2px solid #e9ecef;
+        }
+        
+        .right-panel {
+            flex: 2;
+            min-width: 300px;
+            padding: 30px;
+            background: white;
+        }
+        
+        .section-title {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #3498db;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title i {
+            color: #3498db;
+        }
+        
+        /* Seat Grid */
+        .bus-container {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+        }
+        
+        .driver-area {
+            background: #e3f2fd;
+            padding: 15px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border: 2px dashed #64b5f6;
+            font-weight: bold;
+            color: #1565c0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .seats-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        
+        .seat {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            flex-direction: column;
+            padding: 5px;
+        }
+        
+        .seat:after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            border-radius: 8px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .seat-number {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+        
+        .seat-price {
+            font-size: 0.7rem;
+            margin-top: 2px;
+            color: #333;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 1px 4px;
+            border-radius: 3px;
+        }
+        
+        /* Seat Color Coding by Price Range */
+        .seat.price-1300 {
+            background: linear-gradient(145deg, #FF5722, #FF7043);
+            border: 3px solid #D84315;
+        }
+        
+        .seat.price-1100 {
+            background: linear-gradient(145deg, #2196F3, #42A5F5);
+            border: 3px solid #1565C0;
+        }
+        
+        .seat.price-1000 {
+            background: linear-gradient(145deg, #4CAF50, #66BB6A);
+            border: 3px solid #2E7D32;
+        }
+        
+        .seat.selected {
+            background: linear-gradient(145deg, #FFC107, #FFD54F);
+            color: #333;
+            border: 3px solid #FF8F00;
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(255, 193, 7, 0.3);
+        }
+        
+        .seat.selected .seat-price {
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            font-weight: bold;
+        }
+        
+        .seat.booked {
+            background: linear-gradient(145deg, #757575, #9E9E9E);
+            border: 3px solid #424242;
+            cursor: not-allowed;
+            opacity: 0.7;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .seat.booked .seat-price {
+            background: rgba(255, 255, 255, 0.5);
+            color: #666;
+        }
+        
+        .booked-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-size: 0.6rem;
+            font-weight: bold;
+            z-index: 2;
+            white-space: nowrap;
+        }
+        
+        .passenger-name {
+            position: absolute;
+            bottom: 2px;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            font-size: 0.55rem;
+            padding: 1px 2px;
+            text-align: center;
+            border-radius: 0 0 8px 8px;
+            z-index: 2;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        .seat.gate {
+            background: linear-gradient(145deg, #9C27B0, #AB47BC);
+            color: white;
+            border: 3px solid #6A1B9A;
+            cursor: default;
+        }
+        
+        .seat.empty {
+            visibility: hidden;
+        }
+        
+        .seat.available:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .seat.booked:hover {
+            transform: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: not-allowed;
+        }
+        
+        .aisle-label {
+            grid-column: 3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        /* Fare Info */
+        .fare-info {
+            background: linear-gradient(to right, #e3f2fd, #f3e5f5);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 5px solid #9C27B0;
+        }
+        
+        .fare-info h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .fare-ranges {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        
+        .fare-range {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .fare-range .range {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .fare-range .price {
+            font-weight: bold;
+            color: #D84315;
+            font-size: 1.2rem;
+        }
+        
+        /* Legend */
+        .legend {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .legend-color {
+            width: 25px;
+            height: 25px;
+            border-radius: 6px;
+            border: 2px solid;
+        }
+        
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: #f8f9fa;
+        }
+        
+        .form-control:focus {
+            border-color: #3498db;
+            background: white;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        .selected-seats-display {
+            min-height: 100px;
+            padding: 15px;
+            background: #e3f2fd;
+            border-radius: 10px;
+            border: 2px dashed #64b5f6;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .no-seats {
+            color: #666;
+            font-style: italic;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .seat-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .seat-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .seat-number-badge {
+            background: #FFC107;
+            color: #333;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            min-width: 80px;
+            text-align: center;
+        }
+        
+        .seat-price-badge {
+            background: #4CAF50;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        
+        .remove-seat {
+            background: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        
+        .passenger-name-input {
+            flex: 2;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.95rem;
+        }
+        
+        .passenger-name-input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+        
+        .price-summary {
+            background: linear-gradient(to right, #4CAF50, #66BB6A);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+        
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .total-price {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .rupee-symbol {
+            font-family: sans-serif;
+            font-weight: bold;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 18px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(to right, #3498db, #2980b9);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(to right, #2980b9, #1c6ea4);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
+        }
+        
+        .btn-primary:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #2c3e50;
+            border: 2px solid #ddd;
+        }
+        
+        .btn-secondary:hover {
+            background: #e9ecef;
+            border-color: #adb5bd;
+        }
+        
+        .status-message {
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 25px;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+        
+        .status-message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #c3e6cb;
+            display: block;
+        }
+        
+        .status-message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 2px solid #f5c6cb;
+            display: block;
+        }
+        
+        .status-message.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 2px solid #bee5eb;
+            display: block;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .instructions {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .instructions h3 {
+            color: #856404;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .instructions ol {
+            padding-left: 20px;
+            color: #856404;
+        }
+        
+        .instructions li {
+            margin-bottom: 10px;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: white;
+            margin-top: 20px;
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            
+            .left-panel {
+                border-right: none;
+                border-bottom: 2px solid #e9ecef;
+            }
+            
+            .seats-grid {
+                gap: 8px;
+            }
+            
+            .seat {
+                font-size: 0.9rem;
+            }
+            
+            .buttons {
+                flex-direction: column;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .fare-ranges {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+            
+            .seat-item {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+            
+            .seat-info {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .seats-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .seat:nth-child(3n) {
+                display: none;
+            }
+            
+            .aisle-label {
+                display: none;
+            }
+            
+            .legend {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-bus"></i> Bus Seat Booking with Passenger Names</h1>
+            <p>Book seats with individual passenger names. Each seat saved separately in Google Sheets.</p>
+        </div>
+        
+        <div class="content">
+            <!-- Left Panel: Seat Selection -->
+            <div class="left-panel">
+                <h2 class="section-title"><i class="fas fa-chair"></i> Select Your Seats</h2>
+                
+                <div class="fare-info">
+                    <h4><i class="fas fa-tag"></i> Fare Information</h4>
+                    <div class="fare-ranges">
+                        <div class="fare-range">
+                            <div class="range">Seats 1-14</div>
+                            <div class="price">₹1300</div>
+                        </div>
+                        <div class="fare-range">
+                            <div class="range">Seats 15-30</div>
+                            <div class="price">₹1100</div>
+                        </div>
+                        <div class="fare-range">
+                            <div class="range">Seats 31-48</div>
+                            <div class="price">₹1000</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bus-container">
+                    <div class="driver-area">
+                        <i class="fas fa-user-tie"></i> Driver's Cabin
+                    </div>
+                    
+                    <div class="seats-grid" id="seats-grid">
+                        <!-- Seats will be generated dynamically -->
+                    </div>
+                    
+                    <div class="legend">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #FF5722; border-color: #D84315;"></div>
+                            <span>Premium Seats (₹1300)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #2196F3; border-color: #1565C0;"></div>
+                            <span>Standard Seats (₹1100)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #4CAF50; border-color: #2E7D32;"></div>
+                            <span>Economy Seats (₹1000)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #FFC107; border-color: #FF8F00;"></div>
+                            <span>Selected Seats</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #757575; border-color: #424242;"></div>
+                            <span>Booked Seats</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Panel: Booking Form -->
+            <div class="right-panel">
+                <h2 class="section-title"><i class="fas fa-clipboard-list"></i> Booking Details</h2>
+                
+                <div id="status-message" class="status-message"></div>
+                
+                <form id="booking-form">
+                    <div class="form-group">
+                        <label class="form-label" for="name"><i class="fas fa-user"></i> Primary Passenger Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="Enter primary passenger name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="email"><i class="fas fa-envelope"></i> Email Address</label>
+                        <input type="email" id="email" class="form-control" placeholder="Enter your email address" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="phone"><i class="fas fa-phone"></i> Phone Number</label>
+                        <input type="tel" id="phone" class="form-control" placeholder="Enter your phone number" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="travel-date"><i class="fas fa-calendar-alt"></i> Travel Date</label>
+                        <input type="date" id="travel-date" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label"><i class="fas fa-ticket-alt"></i> Selected Seats with Passenger Names</label>
+                        <div class="selected-seats-display" id="selected-seats-display">
+                            <div class="no-seats">No seats selected yet. Click on available seats to select.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="price-summary">
+                        <div class="price-item">
+                            <span>Number of Seats:</span>
+                            <span id="seat-count">0</span>
+                        </div>
+                        <div class="total-price">
+                            <span>TOTAL FARE:</span>
+                            <span class="rupee-symbol">₹</span><span id="total-price">0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="buttons">
+                        <button type="submit" class="btn btn-primary" id="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Confirm Booking
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="reset-btn">
+                            <i class="fas fa-redo"></i> Reset Selection
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <h3><i class="fas fa-info-circle"></i> How to Use:</h3>
+            <ol>
+                <li><strong>Click on available seats</strong> to select them</li>
+                <li><strong>Enter passenger name</strong> for each selected seat</li>
+                <li><strong>Each seat will be saved separately</strong> in Google Sheets with passenger name</li>
+                <li><strong>Fill in contact details</strong> for the primary passenger</li>
+                <li><strong>Click "Confirm Booking"</strong> to save all seats with passenger names</li>
+            </ol>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>Bus Booking System &copy; 2024 | Each seat saved with passenger name in Google Sheets</p>
+    </div>
+
+    <script>
+        // ============================================
+        // CONFIGURATION - SET YOUR GOOGLE APPS SCRIPT URL HERE
+        // ============================================
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+        // REPLACE THE ABOVE WITH YOUR ACTUAL GOOGLE APPS SCRIPT URL
+        // ============================================
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            let selectedSeats = [];
+            
+            // Set default date to tomorrow
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            document.getElementById('travel-date').valueAsDate = tomorrow;
+            
+            // Initialize seats dynamically
+            initializeSeats();
+            
+            // Initialize seat functionality
+            function initializeSeats() {
+                const seatsGrid = document.getElementById('seats-grid');
+                seatsGrid.innerHTML = '';
+                
+                // Create seat layout
+                const seatLayout = [
+                    // Row 1: Seats 1-4 (₹1300)
+                    { number: 1, price: 1300, row: 1 },
+                    { number: 2, price: 1300, row: 1 },
+                    { type: 'aisle', label: 'AISLE' },
+                    { number: 3, price: 1300, row: 1 },
+                    { number: 4, price: 1300, row: 1 },
+                    
+                    // Row 2: Seats 5-8 (₹1300)
+                    { number: 5, price: 1300, row: 2 },
+                    { number: 6, price: 1300, row: 2 },
+                    { type: 'aisle' },
+                    { number: 7, price: 1300, row: 2 },
+                    { number: 8, price: 1300, row: 2 },
+                    
+                    // Row 3: Seats 9-12 (₹1300)
+                    { number: 9, price: 1300, row: 3 },
+                    { number: 10, price: 1300, row: 3 },
+                    { type: 'aisle' },
+                    { number: 11, price: 1300, row: 3 },
+                    { number: 12, price: 1300, row: 3 },
+                    
+                    // Row 4: Gate + Seats 13-14 (₹1300)
+                    { number: 'Gate', type: 'gate' },
+                    { type: 'empty' },
+                    { type: 'aisle' },
+                    { number: 13, price: 1300, row: 4 },
+                    { number: 14, price: 1300, row: 4 },
+                    
+                    // Row 5: Seats 15-18 (₹1100)
+                    { number: 15, price: 1100, row: 5 },
+                    { number: 16, price: 1100, row: 5 },
+                    { type: 'aisle' },
+                    { number: 17, price: 1100, row: 5 },
+                    { number: 18, price: 1100, row: 5 },
+                    
+                    // Row 6: Seats 19-22 (₹1100) - Seat 19 & 21 are BOOKED
+                    { number: 19, price: 1100, row: 6, booked: true },
+                    { number: 20, price: 1100, row: 6 },
+                    { type: 'aisle' },
+                    { number: 21, price: 1100, row: 6, booked: true },
+                    { number: 22, price: 1100, row: 6 },
+                    
+                    // Row 7: Seats 23-26 (₹1100)
+                    { number: 23, price: 1100, row: 7 },
+                    { number: 24, price: 1100, row: 7 },
+                    { type: 'aisle' },
+                    { number: 25, price: 1100, row: 7 },
+                    { number: 26, price: 1100, row: 7 },
+                    
+                    // Row 8: Seats 27-31 (₹1100)
+                    { number: 27, price: 1100, row: 8 },
+                    { number: 28, price: 1100, row: 8 },
+                    { type: 'aisle' },
+                    { number: 29, price: 1100, row: 8 },
+                    { number: 30, price: 1100, row: 8 },
+                    { number: 31, price: 1100, row: 8 },
+                    
+                    // Row 9: Seats 32-36 (₹1000)
+                    { number: 32, price: 1000, row: 9 },
+                    { number: 33, price: 1000, row: 9 },
+                    { type: 'aisle' },
+                    { number: 34, price: 1000, row: 9 },
+                    { number: 35, price: 1000, row: 9 },
+                    { number: 36, price: 1000, row: 9 },
+                    
+                    // Row 10: Seats 37-42 (₹1000)
+                    { number: 37, price: 1000, row: 10 },
+                    { number: 38, price: 1000, row: 10 },
+                    { type: 'aisle' },
+                    { number: 40, price: 1000, row: 10 },
+                    { number: 41, price: 1000, row: 10 },
+                    { number: 42, price: 1000, row: 10 },
+                    
+                    // Row 11: Seats 43-48 (₹1000)
+                    { number: 43, price: 1000, row: 11 },
+                    { number: 44, price: 1000, row: 11 },
+                    { type: 'aisle' },
+                    { number: 46, price: 1000, row: 11 },
+                    { number: 47, price: 1000, row: 11 },
+                    { number: 48, price: 1000, row: 11 }
+                ];
+                
+                seatLayout.forEach((seat, index) => {
+                    if (seat.type === 'aisle') {
+                        const aisleDiv = document.createElement('div');
+                        aisleDiv.className = 'aisle-label';
+                        aisleDiv.textContent = seat.label || '';
+                        seatsGrid.appendChild(aisleDiv);
+                    } else if (seat.type === 'empty') {
+                        const emptyDiv = document.createElement('div');
+                        emptyDiv.className = 'seat empty';
+                        seatsGrid.appendChild(emptyDiv);
+                    } else if (seat.type === 'gate') {
+                        const gateDiv = document.createElement('div');
+                        gateDiv.className = 'seat gate';
+                        gateDiv.innerHTML = `<div class="seat-number">${seat.number}</div>`;
+                        seatsGrid.appendChild(gateDiv);
+                    } else {
+                        const seatDiv = document.createElement('div');
+                        
+                        // Determine price class
+                        let priceClass = '';
+                        if (seat.price === 1300) priceClass = 'price-1300';
+                        else if (seat.price === 1100) priceClass = 'price-1100';
+                        else if (seat.price === 1000) priceClass = 'price-1000';
+                        
+                        // Check if seat is booked
+                        const isBooked = seat.booked || false;
+                        
+                        seatDiv.className = `seat ${priceClass} ${isBooked ? 'booked' : 'available'}`;
+                        seatDiv.setAttribute('data-seat', seat.number);
+                        seatDiv.setAttribute('data-price', seat.price);
+                        
+                        seatDiv.innerHTML = `
+                            <div class="seat-number">${seat.number}</div>
+                            <div class="seat-price">₹${seat.price}</div>
+                            ${isBooked ? '<div class="booked-label">BOOKED</div>' : ''}
+                        `;
+                        
+                        // Add click event only to available seats
+                        if (!isBooked) {
+                            seatDiv.addEventListener('click', function() {
+                                handleSeatClick(this, seat.number, seat.price);
+                            });
+                        }
+                        
+                        seatsGrid.appendChild(seatDiv);
+                    }
+                });
+            }
+            
+            // Handle seat click
+            function handleSeatClick(seatElement, seatNumber, seatPrice) {
+                const seatIndex = selectedSeats.findIndex(seat => seat.number === seatNumber);
+                
+                if (seatIndex === -1) {
+                    // Add seat to selection
+                    selectedSeats.push({
+                        number: seatNumber,
+                        price: seatPrice,
+                        element: seatElement,
+                        passengerName: '' // Empty passenger name initially
+                    });
+                    seatElement.classList.add('selected');
+                } else {
+                    // Remove seat from selection
+                    selectedSeats.splice(seatIndex, 1);
+                    seatElement.classList.remove('selected');
+                }
+                
+                updateSelectedSeatsDisplay();
+                updatePriceCalculation();
+            }
+            
+            // Update selected seats display with passenger name inputs
+            function updateSelectedSeatsDisplay() {
+                const container = document.getElementById('selected-seats-display');
+                
+                if (selectedSeats.length === 0) {
+                    container.innerHTML = '<div class="no-seats">No seats selected yet. Click on available seats to select.</div>';
+                } else {
+                    container.innerHTML = '';
+                    
+                    selectedSeats.forEach((seat, index) => {
+                        const seatItem = document.createElement('div');
+                        seatItem.className = 'seat-item';
+                        seatItem.innerHTML = `
+                            <div class="seat-info">
+                                <div class="seat-number-badge">Seat ${seat.number}</div>
+                                <div class="seat-price-badge">₹${seat.price}</div>
+                            </div>
+                            <input type="text" 
+                                   class="passenger-name-input" 
+                                   placeholder="Enter passenger name for seat ${seat.number}"
+                                   value="${seat.passengerName || ''}"
+                                   data-seat-index="${index}">
+                            <button type="button" class="remove-seat" data-seat="${seat.number}">&times;</button>
+                        `;
+                        container.appendChild(seatItem);
+                        
+                        // Add event listener to passenger name input
+                        const nameInput = seatItem.querySelector('.passenger-name-input');
+                        nameInput.addEventListener('input', function(e) {
+                            const seatIndex = parseInt(this.getAttribute('data-seat-index'));
+                            selectedSeats[seatIndex].passengerName = this.value;
+                        });
+                        
+                        // Add event listener to remove button
+                        seatItem.querySelector('.remove-seat').addEventListener('click', function(e) {
+                            e.stopPropagation();
+                            const seatToRemove = this.getAttribute('data-seat');
+                            const seatIndex = selectedSeats.findIndex(seat => seat.number === seatToRemove);
+                            
+                            if (seatIndex !== -1) {
+                                const seatElement = selectedSeats[seatIndex].element;
+                                seatElement.classList.remove('selected');
+                                selectedSeats.splice(seatIndex, 1);
+                                
+                                updateSelectedSeatsDisplay();
+                                updatePriceCalculation();
+                            }
+                        });
+                    });
+                }
+            }
+            
+            // Update price calculation
+            function updatePriceCalculation() {
+                const seatCount = selectedSeats.length;
+                
+                if (seatCount === 0) {
+                    document.getElementById('seat-count').textContent = '0';
+                    document.getElementById('total-price').textContent = '0';
+                    return;
+                }
+                
+                // Calculate total fare
+                let totalFare = 0;
+                selectedSeats.forEach(seat => {
+                    totalFare += seat.price;
+                });
+                
+                // Update display
+                document.getElementById('seat-count').textContent = seatCount;
+                document.getElementById('total-price').textContent = totalFare.toLocaleString('en-IN');
+            }
+            
+            // Form submission
+            document.getElementById('booking-form').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const travelDate = document.getElementById('travel-date').value;
+                const submitBtn = document.getElementById('submit-btn');
+                const messageDiv = document.getElementById('status-message');
+                
+                // Validation
+                if (selectedSeats.length === 0) {
+                    showMessage('Please select at least one seat.', 'error');
+                    return;
+                }
+                
+                // Check if all seats have passenger names
+                const seatsWithoutNames = selectedSeats.filter(seat => !seat.passengerName.trim());
+                if (seatsWithoutNames.length > 0) {
+                    showMessage(`Please enter passenger names for seats: ${seatsWithoutNames.map(seat => seat.number).join(', ')}`, 'error');
+                    return;
+                }
+                
+                if (!name || !email || !phone || !travelDate) {
+                    showMessage('Please fill in all required fields.', 'error');
+                    return;
+                }
+                
+                if (!validateEmail(email)) {
+                    showMessage('Please enter a valid email address.', 'error');
+                    return;
+                }
+                
+                // Calculate total fare
+                let totalFare = 0;
+                selectedSeats.forEach(seat => {
+                    totalFare += seat.price;
+                });
+                
+                // Disable button and show processing
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+                showMessage('Processing your booking...', 'info');
+                
+                // Prepare booking data with passenger names for each seat
+                const seatDetails = selectedSeats.map(seat => ({
+                    seatNumber: seat.number,
+                    price: seat.price,
+                    passengerName: seat.passengerName.trim() || name
+                }));
+                
+                const bookingData = {
+                    name: name,
+                    email: email,
+                    phone: phone,
+                    travelDate: travelDate,
+                    seatDetails: seatDetails,
+                    totalPrice: totalFare
+                };
+                
+                try {
+                    // Send data to Google Apps Script
+                    const response = await fetch(GOOGLE_SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(bookingData)
+                    });
+                    
+                    // Mark seats as booked in the UI with passenger names
+                    selectedSeats.forEach(seat => {
+                        seat.element.classList.remove('selected');
+                        seat.element.classList.remove('available');
+                        seat.element.classList.add('booked');
+                        
+                        // Remove click event
+                        seat.element.removeEventListener('click', handleSeatClick);
+                        
+                        // Add "BOOKED" label
+                        const bookedLabel = document.createElement('div');
+                        bookedLabel.className = 'booked-label';
+                        bookedLabel.textContent = 'BOOKED';
+                        seat.element.appendChild(bookedLabel);
+                        
+                        // Add passenger name on the seat
+                        const passengerNameDiv = document.createElement('div');
+                        passengerNameDiv.className = 'passenger-name';
+                        passengerNameDiv.textContent = seat.passengerName || name;
+                        seat.element.appendChild(passengerNameDiv);
+                    });
+                    
+                    // Show success message
+                    const seatList = selectedSeats.map(seat => seat.number).join(', ');
+                    const passengerNames = selectedSeats.map(seat => `${seat.passengerName} (Seat ${seat.number})`).join(', ');
+                    showMessage(`✅ Booking confirmed! ${selectedSeats.length} seat(s) booked. Total Fare: ₹${totalFare.toLocaleString('en-IN')}. Each seat saved separately with passenger name.`, 'success');
+                    
+                    // Reset form
+                    document.getElementById('booking-form').reset();
+                    
+                    // Reset selected seats
+                    selectedSeats = [];
+                    updateSelectedSeatsDisplay();
+                    updatePriceCalculation();
+                    
+                    // Reset date to tomorrow
+                    const newTomorrow = new Date();
+                    newTomorrow.setDate(newTomorrow.getDate() + 1);
+                    document.getElementById('travel-date').valueAsDate = newTomorrow;
+                    
+                } catch (error) {
+                    console.error('Booking error:', error);
+                    showMessage('❌ Error saving booking. Please try again.', 'error');
+                } finally {
+                    // Re-enable button
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Confirm Booking';
+                    
+                    // Auto-hide success message after 8 seconds
+                    if (messageDiv.classList.contains('success')) {
+                        setTimeout(() => {
+                            messageDiv.classList.remove('success');
+                            messageDiv.innerHTML = '';
+                        }, 8000);
+                    }
+                }
+            });
+            
+            // Reset button
+            document.getElementById('reset-btn').addEventListener('click', function() {
+                // Reset selected seats
+                selectedSeats.forEach(seat => {
+                    seat.element.classList.remove('selected');
+                });
+                
+                selectedSeats = [];
+                updateSelectedSeatsDisplay();
+                updatePriceCalculation();
+                
+                showMessage('Selection reset. You can choose new seats.', 'info');
+            });
+            
+            // Helper function to show messages
+            function showMessage(text, type) {
+                const messageDiv = document.getElementById('status-message');
+                messageDiv.innerHTML = text;
+                messageDiv.className = `status-message ${type}`;
+            }
+            
+            // Email validation
+            function validateEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+            
+            // Initialize price display
+            updatePriceCalculation();
+        });
+    </script>
+</body>
+</html>
