@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>সুন্দরবন - পৃথিবীর বৃহত্তম ম্যানগ্রোভ বন | পশ্চিমবঙ্গ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f9f0;
+            color: #333;
+            line-height: 1.8;
+            direction: ltr;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(to right, #2c5530, #4a7c59);
+            color: white;
+            padding: 25px 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .logo i {
+            font-size: 3rem;
+            color: #f5c542;
+        }
+        
+        h1 {
+            font-size: 3.2rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+        
+        .tagline {
+            font-size: 1.4rem;
+            font-style: italic;
+            opacity: 0.95;
+            color: #f5c542;
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: #3a6b47;
+            padding: 15px 0;
+            margin-bottom: 30px;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .nav-item {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 500;
+            padding: 8px 20px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .nav-item:hover {
+            background-color: #f5c542;
+            color: #2c5530;
+            transform: translateY(-3px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 600px;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .hero-text {
+            max-width: 900px;
+            padding: 40px;
+            background-color: rgba(44, 85, 48, 0.8);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #f5c542;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #f5c542;
+            color: #2c5530;
+            padding: 12px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #e0b43a;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Section Styling */
+        section {
+            margin-bottom: 70px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #2c5530;
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 5px;
+            background-color: #f5c542;
+            border-radius: 5px;
+        }
+        
+        /* Introduction Section */
+        .intro {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+        
+        .intro-text {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            font-size: 1.2rem;
+        }
+        
+        .intro-text p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        
+        .intro-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            height: 400px;
+        }
+        
+        .intro-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s;
+        }
+        
+        .intro-image img:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Highlights Section */
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 70px;
+        }
+        
+        .highlight-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s, box-shadow 0.4s;
+        }
+        
+        .highlight-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .highlight-img {
+            height: 200px;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .highlight-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .highlight-card:hover .highlight-img img {
+            transform: scale(1.1);
+        }
+        
+        .highlight-content {
+            padding: 25px;
+        }
+        
+        .highlight-content h3 {
+            color: #2c5530;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .highlight-icon {
+            color: #f5c542;
+            font-size: 1.5rem;
+        }
+        
+        /* Homestay Section */
+        .homestay-section {
+            background-color: #f0f7eb;
+            padding: 50px 30px;
+            border-radius: 15px;
+            margin-bottom: 70px;
+        }
+        
+        .homestay-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+            margin-top: 40px;
+        }
+        
+        .homestay-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .homestay-card:hover {
+            transform: translateY(-8px);
+        }
+        
+        .homestay-img {
+            height: 220px;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .homestay-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .homestay-info {
+            padding: 25px;
+        }
+        
+        .homestay-info h3 {
+            color: #2c5530;
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+        
+        .homestay-price {
+            color: #f5c542;
+            font-weight: 600;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        
+        .homestay-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .feature-tag {
+            background-color: #e9f3e1;
+            color: #2c5530;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        /* Food Section */
+        .food-section {
+            margin-bottom: 70px;
+        }
+        
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .food-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .food-card:hover {
+            transform: translateY(-8px);
+        }
+        
+        .food-img {
+            height: 200px;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .food-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .food-info {
+            padding: 25px;
+        }
+        
+        .food-info h3 {
+            color: #2c5530;
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+        
+        .food-type {
+            color: #f5c542;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Mangrove Forest Section */
+        .mangrove-section {
+            background: linear-gradient(to right, #2c5530, #3a6b47);
+            color: white;
+            padding: 60px 40px;
+            border-radius: 15px;
+            margin-bottom: 70px;
+        }
+        
+        .mangrove-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .mangrove-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .mangrove-text h3 {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            color: #f5c542;
+        }
+        
+        .mangrove-text p {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .mangrove-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            height: 350px;
+        }
+        
+        .mangrove-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .mangrove-facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .fact-box {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .fact-icon {
+            font-size: 2.5rem;
+            color: #f5c542;
+            margin-bottom: 15px;
+        }
+        
+        .fact-box h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        /* Gallery Section */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 70px;
+        }
+        
+        .gallery-item {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 250px;
+            position: relative;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .image-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(44, 85, 48, 0.85);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #2c5530;
+            color: white;
+            padding: 50px 0 30px;
+            margin-top: 50px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: #f5c542;
+            font-size: 1.5rem;
+        }
+        
+        .footer-section p {
+            margin-bottom: 15px;
+        }
+        
+        .footer-section a {
+            color: #f5c542;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #3a6b47;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            background-color: #f5c542;
+            color: #2c5530;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        .bengali-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero {
+                height: 500px;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.4rem;
+            }
+            
+            .hero {
+                height: 450px;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.9rem;
+            }
+            
+            .nav-container {
+                gap: 15px;
+            }
+            
+            .nav-item {
+                font-size: 1rem;
+                padding: 6px 15px;
+            }
+            
+            .hero p, .intro-text, .highlight-content p {
+                font-size: 1.1rem;
+            }
+            
+            .btn {
+                padding: 10px 25px;
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .hero {
+                height: 400px;
+            }
+            
+            .hero-text {
+                padding: 25px;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.7rem;
+            }
+            
+            .logo {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .logo i {
+                font-size: 2.5rem;
+            }
+            
+            .intro, .mangrove-content {
+                flex-direction: column;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-tree"></i>
+                <div>
+                    <h1>সুন্দরবন</h1>
+                    <p class="tagline">পৃথিবীর বৃহত্তম ম্যানগ্রোভ বন | পশ্চিমবঙ্গের অমূল্য সম্পদ</p>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container nav-container">
+            <a href="#about" class="nav-item"><i class="fas fa-info-circle"></i> সুন্দরবন সম্পর্কে</a>
+            <a href="#mangrove" class="nav-item"><i class="fas fa-tree"></i> ম্যানগ্রোভ বন</a>
+            <a href="#homestay" class="nav-item"><i class="fas fa-home"></i> হোমস্টে</a>
+            <a href="#food" class="nav-item"><i class="fas fa-utensils"></i> বিখ্যাত খাবার</a>
+            <a href="#gallery" class="nav-item"><i class="fas fa-camera"></i> গ্যালারি</a>
+            <a href="#contact" class="nav-item"><i class="fas fa-phone-alt"></i> যোগাযোগ</a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="hero">
+            <div class="hero-text">
+                <h2>সুন্দরবনের অমলিন সৌন্দর্য আবিষ্কার করুন</h2>
+                <p class="bengali-text">পৃথিবীর বৃহত্তম ম্যানগ্রোভ বন, ইউনেস্কো বিশ্ব ঐতিহ্যবাহী স্থান এবং রয়েল বেঙ্গল টাইগারের আবাসস্থল সুন্দরবন আপনাকে স্বাগত জানায়। প্রাকৃতিক সৌন্দর্য, জীববৈচিত্র্য এবং সংস্কৃতির অপূর্ব সমন্বয়ে গড়া এই অঞ্চল পর্যটকদের জন্য এক অনন্য অভিজ্ঞতা প্রদান করে।</p>
+                <a href="#about" class="btn">আরও জানুন</a>
+            </div>
+        </div>
+        
+        <section id="about" class="intro">
+            <div class="intro-text bengali-text">
+                <h2 class="section-title">সুন্দরবন সম্পর্কে</h2>
+                <p>সুন্দরবন হলো পৃথিবীর বৃহত্তম ম্যানগ্রোভ বন যা ভারতের পশ্চিমবঙ্গ এবং বাংলাদেশে অবস্থিত। প্রায় ১০,০০০ বর্গকিলোমিটার এলাকা জুড়ে বিস্তৃত এই বনভূমি গঙ্গা, ব্রহ্মপুত্র ও মেঘনা নদীর মোহনায় বদ্বীপ অঞ্চলে অবস্থিত।</p>
+                <p>সুন্দরবনের নামটি এসেছে "সুন্দরী" গাছ থেকে, যা এই অঞ্চলে ব্যাপকভাবে পাওয়া যায়। এই বন শুধু ম্যানগ্রোভ গাছের জন্যই বিখ্যাত নয়, বরং এটি রয়েল বেঙ্গল টাইগার, কুমির, হরিণ এবং অসংখ্য প্রজাতির পাখি ও জলজ প্রাণীর আবাসস্থল।</p>
+                <p>১৯৮৭ সালে ইউনেস্কো সুন্দরবনকে বিশ্ব ঐতিহ্যবাহী স্থান হিসেবে ঘোষণা করে। এই বনের অনন্য পরিবেশ ব্যবস্থা, জীববৈচিত্র্য এবং পরিবেশগত গুরুত্বের কারণে এটি বিশ্বের অন্যতম গুরুত্বপূর্ণ প্রাকৃতিক সম্পদ হিসেবে স্বীকৃত।</p>
+            </div>
+            <div class="intro-image">
+                <img src="https://images.unsplash.com/photo-1589552950456-75eeaf5c4f34?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="সুন্দরবনের প্রাকৃতিক দৃশ্য">
+            </div>
+        </section>
+        
+        <section class="highlights-section">
+            <h2 class="section-title">সুন্দরবনের বিশেষ বৈশিষ্ট্য</h2>
+            <div class="highlights">
+                <div class="highlight-card">
+                    <div class="highlight-img">
+                        <img src="https://images.unsplash.com/photo-1548013146-72479768bada?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="সুন্দরবনের রয়েল বেঙ্গল টাইগার">
+                    </div>
+                    <div class="highlight-content">
+                        <h3><i class="fas fa-paw highlight-icon"></i> রয়েল বেঙ্গল টাইগার</h3>
+                        <p class="bengali-text">সুন্দরবন হলো পৃথিবীর বৃহত্তম রয়েল বেঙ্গল টাইগার সংরক্ষণাগার। এখানে প্রায় ১০০টি বাঘ রয়েছে যারা ম্যানগ্রোভ পরিবেশে অভিযোজিত হয়েছে।</p>
+                    </div>
+                </div>
+                
+                <div class="highlight-card">
+                    <div class="highlight-img">
+                        <img src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="সুন্দরবনের ম্যানগ্রোভ বন">
+                    </div>
+                    <div class="highlight-content">
+                        <h3><i class="fas fa-tree highlight-icon"></i> ম্যানগ্রোভ বন</h3>
+                        <p class="bengali-text">সুন্দরবন পৃথিবীর বৃহত্তম ম্যানগ্রোভ বন যা লবণাক্ত পানিতে টিকে থাকা গাছপালা দ্বারা গঠিত। এখানে সুন্দরী, গেওয়া, গরান সহ নানা প্রজাতির ম্যানগ্রোভ গাছ দেখা যায়।</p>
+                    </div>
+                </div>
+                
+                <div class="highlight-card">
+                    <div class="highlight-img">
+                        <img src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="সুন্দরবনের জীববৈচিত্র্য">
+                    </div>
+                    <div class="highlight-content">
+                        <h3><i class="fas fa-fish highlight-icon"></i> সমৃদ্ধ জীববৈচিত্র্য</h3>
+                        <p class="bengali-text">সুন্দরবনে রয়েছে ৪০০ প্রজাতির উদ্ভিদ, ৩০০ প্রজাতির পাখি, ১২০ প্রজাতির মাছ, ৫০ প্রজাতির সরীসৃপ এবং ৩০ প্রজাতির স্তন্যপায়ী প্রাণী।</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="mangrove" class="mangrove-section">
+            <div class="mangrove-content">
+                <div class="mangrove-text">
+                    <h3>সুন্দরবনের ম্যানগ্রোভ বন</h3>
+                    <p class="bengali-text">সুন্দরবনের ম্যানগ্রোভ বন একটি অনন্য বাস্তুতন্ত্র যা লবণাক্ত পানিতে টিকে থাকার জন্য বিশেষভাবে অভিযোজিত। এই বনের গাছপালাগুলো জোয়ার-ভাটার মধ্যেও বেঁচে থাকতে পারে এবং লবণাক্ততা সহ্য করতে পারে।</p>
+                    <p class="bengali-text">ম্যানগ্রোভ বন উপকূলীয় এলাকাকে ঘূর্ণিঝড়, সুনামি ও ক্ষয় থেকে রক্ষা করে, কার্বন শোষণ করে জলবায়ু পরিবর্তন মোকাবিলায় সাহায্য করে এবং বহু প্রজাতির প্রাণীর আবাসস্থল সরবরাহ করে।</p>
+                    <p class="bengali-text">সুন্দরবনের ম্যানগ্রোভ বন বিশ্বের অন্যতম কার্বন শোষণকারী বন হিসেবে পরিচিত এবং এটি স্থানীয় জনগণের জীবিকার অন্যতম উৎস।</p>
+                    
+                    <div class="mangrove-facts">
+                        <div class="fact-box">
+                            <i class="fas fa-globe-asia fact-icon"></i>
+                            <h4>বৃহত্তম ম্যানগ্রোভ</h4>
+                            <p class="bengali-text">পৃথিবীর বৃহত্তম ম্যানগ্রোভ বন</p>
+                        </div>
+                        <div class="fact-box">
+                            <i class="fas fa-seedling fact-icon"></i>
+                            <h4>৭৩ প্রজাতির গাছ</h4>
+                            <p class="bengali-text">সুন্দরী গাছসহ ৭৩ প্রজাতির ম্যানগ্রোভ</p>
+                        </div>
+                        <div class="fact-box">
+                            <i class="fas fa-shield-alt fact-icon"></i>
+                            <h4>প্রাকৃতিক প্রতিরক্ষা</h4>
+                            <p class="bengali-text">উপকূলীয় অঞ্চলের প্রাকৃতিক প্রতিরক্ষা</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mangrove-image">
+                    <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="সুন্দরবনের ম্যানগ্রোভ বন">
+                </div>
+            </div>
+        </section>
+        
+        <section id="homestay" class="homestay-section">
+            <h2 class="section-title">সুন্দরবনের হোমস্টে</h2>
+            <p class="bengali-text" style="text-align: center; font-size: 1.2rem; margin-bottom: 20px;">স্থানীয় পরিবেশ ও সংস্কৃতি উপভোগ করার জন্য সুন্দরবনে বিভিন্ন মানের হোমস্টে রয়েছে।</p>
+            
+            <div class="homestay-grid">
+                <div class="homestay-card">
+                    <div class="homestay-img">
+                        <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="সুন্দরবনের বনবাংলো">
+                    </div>
+                    <div class="homestay-info">
+                        <h3>সুন্দরবন ইকো রিসোর্ট</h3>
+                        <div class="homestay-price">₹২,৫০০/রাত থেকে</div>
+                        <div class="homestay-features">
+                            <span class="feature-tag">নদীর পাশে</span>
+                            <span class="feature-tag">জঙ্গল দৃশ্য</span>
+                            <span class="feature-tag">স্থানীয় খাবার</span>
+                        </div>
+                        <p class="bengali-text">প্রাকৃতিক পরিবেশে নির্মিত ইকো-ফ্রেন্ডলি রিসোর্ট। নদীর পাশে অবস্থিত এই রিসোর্ট থেকে সরাসরি বনের দৃশ্য দেখা যায়।</p>
+                    </div>
+                </div>
+                
+                <div class="homestay-card">
+                    <div class="homestay-img">
+                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="সুন্দরবনের নদীপাড়ের হোমস্টে">
+                    </div>
+                    <div class="homestay-info">
+                        <h3>বনবিহার হোমস্টে</h3>
+                        <div class="homestay-price">₹১,৮০০/রাত থেকে</div>
+                        <div class="homestay-features">
+                            <span class="feature-tag">স্থানীয় পরিবার</span>
+                            <span class="feature-tag">ম্যানগ্রোভ ট্যুর</span>
+                            <span class="feature-tag">মাছ ধরা</span>
+                        </div>
+                        <p class="bengali-text">স্থানীয় পরিবারের সাথে বসবাসের অভিজ্ঞতা। এই হোমস্টেতে আপনি স্থানীয় সংস্কৃতি ও জীবনধারা সরাসরি উপভোগ করতে পারবেন।</p>
+                    </div>
+                </div>
+                
+                <div class="homestay-card">
+                    <div class="homestay-img">
+                        <img src="https://images.unsplash.com/photo-1464207687429-7505649dae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="সুন্দরবনের লাক্সারি রিসোর্ট">
+                    </div>
+                    <div class="homestay-info">
+                        <h3>টাইগার ক্যাম্প লজ</h3>
+                        <div class="homestay-price">₹৩,৫০০/রাত থেকে</div>
+                        <div class="homestay-features">
+                            <span class="feature-tag">বিলাসবহুল</span>
+                            <span class="feature-tag">গাইডেড সাফারি</span>
+                            <span class="feature-tag">স্পা</span>
+                        </div>
+                        <p class="bengali-text">বিলাসবহুল ক্যাম্পে থাকার অভিজ্ঞতা। বনের গভীরে অবস্থিত এই লজ থেকে বন্য প্রাণী দেখার বিশেষ সুযোগ রয়েছে।</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="food" class="food-section">
+            <h2 class="section-title">সুন্দরবনের বিখ্যাত খাবার</h2>
+            <p class="bengali-text" style="text-align: center; font-size: 1.2rem; margin-bottom: 20px;">সুন্দরবনের অনন্য সামুদ্রিক ও স্থানীয় খাবারের স্বাদ উপভোগ করুন।</p>
+            
+            <div class="food-grid">
+                <div class="food-card">
+                    <div class="food-img">
+                        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="সুন্দরবনের মাছের ঝোল">
+                    </div>
+                    <div class="food-info">
+                        <h3>ইলিশ মাছের ঝোল</h3>
+                        <div class="food-type"><i class="fas fa-fish"></i> সামুদ্রিক খাবার</div>
+                        <p class="bengali-text">সুন্দরবনের প্রসিদ্ধ ইলিশ মাছ সরিষার তেলে রান্না করা হয় স্থানীয় মশলায়। এই পদটি বাঙালি রান্নার অন্যতম আকর্ষণ।</p>
+                    </div>
+                </div>
+                
+                <div class="food-card">
+                    <div class="food-img">
+                        <img src="https://images.unsplash.com/photo-1563379091339-03246963d9d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="সুন্দরবনের কাঁকড়া ভাজা">
+                    </div>
+                    <div class="food-info">
+                        <h3>কাঁকড়া ভাজা</h3>
+                        <div class="food-type"><i class="fas fa-crab"></i> স্থানীয় বিশেষতা</div>
+                        <p class="bengali-text">সুন্দরবনের ম্যানগ্রোভ এলাকায় ধরা কাঁকড়া স্থানীয় পদ্ধতিতে মশলাদার করে ভাজা হয়। এই খাবারটি পর্যটকদের মধ্যে খুবই জনপ্রিয়।</p>
+                    </div>
+                </div>
+                
+                <div class="food-card">
+                    <div class="food-img">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="সুন্দরবনের মধু">
+                    </div>
+                    <div class="food-info">
+                        <h3>সুন্দরবনের মধু</h3>
+                        <div class="food-type"><i class="fas fa-honey-pot"></i> প্রাকৃতিক উপাদান</div>
+                        <p class="bengali-text">সুন্দরবনের মৌয়ালরা সংগ্রহ করা বিশুদ্ধ মধু যা ম্যানগ্রোভ ফুলের রেণু থেকে তৈরি। এর স্বাদ ও গুণগত মান বিশ্ববিখ্যাত।</p>
+                    </div>
+                </div>
+                
+                <div class="food-card">
+                    <div class="food-img">
+                        <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="সুন্দরবনের চিংড়ি মালাইকারি">
+                    </div>
+                    <div class="food-info">
+                        <h3>চিংড়ি মালাইকারি</h3>
+                        <div class="food-type"><i class="fas fa-shrimp"></i> ঐতিহ্যবাহী খাবার</div>
+                        <p class="bengali-text">সামুদ্রিক চিংড়ি নারকেলের দুধ ও মশলায় রান্না করা হয়। এটি সুন্দরবন অঞ্চলের একটি ঐতিহ্যবাহী পদ।</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="gallery" class="gallery-section">
+            <h2 class="section-title">সুন্দরবনের গ্যালারি</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="সুন্দরবনের ম্যানগ্রোভ বন">
+                    <div class="image-label">সুন্দরবনের ম্যানগ্রোভ বন</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1548013146-72479768bada?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="সুন্দরবনের নদী">
+                    <div class="image-label">সুন্দরবনের নদী ও জলপথ</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1589552950456-75eeaf5c4f34?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="সুন্দরবনের সূর্যাস্ত">
+                    <div class="image-label">সুন্দরবনের অপূর্ব সূর্যাস্ত</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="সুন্দরবনের চিত্রা হরিণ">
+                    <div class="image-label">সুন্দরবনের চিত্রা হরিণ</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1563379091339-03246963d9d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="সুন্দরবনের নৌকা">
+                    <div class="image-label">সুন্দরবনের ঐতিহ্যবাহী নৌকা</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="সুন্দরবনের স্থানীয় জীবন">
+                    <div class="image-label">সুন্দরবনের স্থানীয় জনজীবন</div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>সুন্দরবন পর্যটন</h3>
+                    <p class="bengali-text">পৃথিবীর বৃহত্তম ম্যানগ্রোভ বন এবং ইউনেস্কো বিশ্ব ঐতিহ্যবাহী স্থান সুন্দরবন সম্পর্কে তথ্য ও পর্যটন সেবা প্রদান করছি।</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>দ্রুত লিঙ্ক</h3>
+                    <a href="#about">সুন্দরবন সম্পর্কে</a>
+                    <a href="#mangrove">ম্যানগ্রোভ বন</a>
+                    <a href="#homestay">হোমস্টে বুকিং</a>
+                    <a href="#food">স্থানীয় খাবার</a>
+                    <a href="#gallery">ফটো গ্যালারি</a>
+                </div>
+                <div class="footer-section">
+                    <h3>যোগাযোগের তথ্য</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> সুন্দরবন জাতীয় উদ্যান, পশ্চিমবঙ্গ, ভারত</p>
+                    <p><i class="fas fa-phone"></i> +৯১ ৯৮৭৬৫ ৪৩২১০</p>
+                    <p><i class="fas fa-envelope"></i> info@sundarbantourism.com</p>
+                    <p><i class="fas fa-clock"></i> সকাল ৯:০০ - সন্ধ্যা ৬:০০</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p class="bengali-text">© ২০২৩ সুন্দরবন পর্যটন, পশ্চিমবঙ্গ। সর্বস্বত্ব সংরক্ষিত।</p>
+                <p class="bengali-text">এই ওয়েবসাইটটি সুন্দরবনের পর্যটন ও সংরক্ষণ সম্পর্কে তথ্য প্রদানের জন্য তৈরি করা হয়েছে।</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Image gallery modal
+        document.addEventListener('DOMContentLoaded', function() {
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            galleryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const imgSrc = this.querySelector('img').src;
+                    const imgAlt = this.querySelector('img').alt;
+                    
+                    // Create a modal view for the image
+                    const modal = document.createElement('div');
+                    modal.style.position = 'fixed';
+                    modal.style.top = '0';
+                    modal.style.left = '0';
+                    modal.style.width = '100%';
+                    modal.style.height = '100%';
+                    modal.style.backgroundColor = 'rgba(0,0,0,0.9)';
+                    modal.style.display = 'flex';
+                    modal.style.justifyContent = 'center';
+                    modal.style.alignItems = 'center';
+                    modal.style.zIndex = '1000';
+                    
+                    const modalImg = document.createElement('img');
+                    modalImg.src = imgSrc;
+                    modalImg.alt = imgAlt;
+                    modalImg.style.maxWidth = '90%';
+                    modalImg.style.maxHeight = '90%';
+                    modalImg.style.borderRadius = '10px';
+                    modalImg.style.boxShadow = '0 5px 25px rgba(0,0,0,0.5)';
+                    
+                    modal.appendChild(modalImg);
+                    document.body.appendChild(modal);
+                    
+                    // Close modal on click
+                    modal.addEventListener('click', function() {
+                        document.body.removeChild(modal);
+                    });
+                });
+            });
+            
+            // Add animation to cards on scroll
+            const cards = document.querySelectorAll('.highlight-card, .homestay-card, .food-card');
+            
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s, transform 0.6s';
+                observer.observe(card);
+            });
+            
+            // Add active class to navigation items on scroll
+            const sections = document.querySelectorAll('section');
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            window.addEventListener('scroll', function() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if(pageYOffset >= (sectionTop - 150)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    if(item.getAttribute('href') === `#${current}`) {
+                        item.classList.add('active');
+                        item.style.backgroundColor = '#f5c542';
+                        item.style.color = '#2c5530';
+                    } else {
+                        item.style.backgroundColor = '';
+                        item.style.color = '';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
