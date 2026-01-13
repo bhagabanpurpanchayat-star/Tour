@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>দিঘা সৈকত - পশ্চিমবঙ্গের সমুদ্রতট</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+        
+        body {
+            background-color: #e6f7ff;
+            color: #222;
+            line-height: 1.8;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(to right, #0056b3, #007bff);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+        
+        .logo i {
+            font-size: 2.8rem;
+            color: #ffdd00;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .tagline {
+            font-size: 1.3rem;
+            font-style: italic;
+            opacity: 0.9;
+        }
+        
+        .hero {
+            position: relative;
+            height: 500px;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        .hero-text {
+            max-width: 800px;
+            padding: 30px;
+            background-color: rgba(0, 40, 85, 0.7);
+            border-radius: 10px;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #ffdd00;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+        }
+        
+        section {
+            margin-bottom: 50px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #0056b3;
+            font-size: 2.2rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: #ffdd00;
+        }
+        
+        .intro {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+        
+        .intro-text {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            font-size: 1.1rem;
+        }
+        
+        .intro-text p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .intro-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .intro-image img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .intro-image img:hover {
+            transform: scale(1.05);
+        }
+        
+        .tab-container {
+            margin-bottom: 50px;
+        }
+        
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            margin: 5px;
+            font-size: 1.1rem;
+            border-radius: 5px 5px 0 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .tab-btn:hover {
+            background-color: #0056b3;
+        }
+        
+        .tab-btn.active {
+            background-color: #ffdd00;
+            color: #0056b3;
+            font-weight: bold;
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+        
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 250px;
+            position: relative;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .image-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .hotels {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .hotel-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+        
+        .hotel-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .hotel-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .hotel-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .hotel-card:hover .hotel-img img {
+            transform: scale(1.1);
+        }
+        
+        .hotel-info {
+            padding: 20px;
+        }
+        
+        .hotel-info h3 {
+            color: #0056b3;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .hotel-rating {
+            color: #ffdd00;
+            margin-bottom: 10px;
+        }
+        
+        .hotel-price {
+            color: #28a745;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+        
+        .visit-info {
+            background-color: #e6f2ff;
+            padding: 40px;
+            border-radius: 10px;
+            margin-bottom: 50px;
+        }
+        
+        .visit-info > p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .info-icon {
+            font-size: 1.8rem;
+            color: #0056b3;
+            margin-top: 5px;
+        }
+        
+        .info-item h3 {
+            color: #0056b3;
+            margin-bottom: 5px;
+        }
+        
+        footer {
+            background-color: #0056b3;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: #ffdd00;
+        }
+        
+        .footer-section p {
+            margin-bottom: 8px;
+        }
+        
+        .footer-section a {
+            color: #ffdd00;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .footer-section a:hover {
+            text-decoration: underline;
+        }
+        
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .bengali-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #ffdd00;
+            color: #0056b3;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #ffcc00;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero {
+                height: 400px;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .hero p, .intro-text, .hotel-info p, .visit-info > p {
+                font-size: 1rem;
+            }
+            
+            .tab-btn {
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero {
+                height: 350px;
+            }
+            
+            .hero-text {
+                padding: 20px;
+            }
+            
+            .gallery, .hotels {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-umbrella-beach"></i>
+                <div>
+                    <h1>দিঘা সৈকত</h1>
+                    <p class="tagline">পশ্চিমবঙ্গের প্রিয় সমুদ্রতট</p>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="hero">
+        <div class="hero-text">
+            <h2>দিঘার সৌন্দর্য উপভোগ করুন</h2>
+            <p>বাংলার সবচেয়ে জনপ্রিয় সমুদ্রতট দিঘায় স্বাগতম, যেখানে সমুদ্রের ঢেউ, সূর্যাস্তের রঙিন আকাশ এবং বিশাল বালুতট আপনাকে অপার শান্তি দেবে।</p>
+        </div>
+    </div>
+    
+    <div class="container">
+        <section class="intro">
+            <div class="intro-text bengali-text">
+                <h2 class="section-title">দিঘা সম্পর্কে</h2>
+                <p>দিঘা হল পশ্চিমবঙ্গের সবচেয়ে জনপ্রিয় ও বিখ্যাত সমুদ্রতট যা পূর্ব মেদিনীপুর জেলায় অবস্থিত। কলকাতা থেকে মাত্র ১৮৭ কিলোমিটার দূরে অবস্থিত এই সমুদ্রতট প্রতি বছর লাখ লাখ পর্যটক আকর্ষণ করে।</p>
+                <p>দিঘা মূলত তিনটি অংশে বিভক্ত - ওল্ড দিঘা, নিউ দিঘা এবং মেরিন ড্রাইভ। ওল্ড দিঘা এখনও তার ঐতিহ্যবাহী চরিত্র বজায় রেখেছে, অন্যদিকে নিউ দিঘা আধুনিক সুযোগ-সুবিধা এবং রিসোর্টগুলির জন্য পরিচিত।</p>
+                <p>এখানকার বিশাল বালুতট, লাল কাঁকড়া, এবং অপূর্ব সূর্যোদয় ও সূর্যাস্তের দৃশ্য পর্যটকদের মনে চিরস্মরণীয় মুহূর্ত রেখে যায়।</p>
+            </div>
+            <div class="intro-image">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="দিঘা সমুদ্রতট">
+            </div>
+        </section>
+        
+        <section class="tab-container">
+            <h2 class="section-title">দিঘা এক নজরে</h2>
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="beach">সমুদ্রতট</button>
+                <button class="tab-btn" data-tab="sightseeing">দর্শনীয় স্থান</button>
+                <button class="tab-btn" data-tab="hotels">হোটেল ও রিসোর্ট</button>
+            </div>
+            
+            <div id="beach" class="tab-content active">
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="দিঘা সৈকত">
+                        <div class="image-label">দিঘা সমুদ্রতটের বিস্তৃত বালু</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="দিঘায় সূর্যাস্ত">
+                        <div class="image-label">দিঘায় সূর্যাস্তের অপূর্ব দৃশ্য</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="দিঘা সমুদ্র">
+                        <div class="image-label">দিঘায় সমুদ্রের ঢেউ</div>
+                    </div>
+                </div>
+                <div class="intro-text bengali-text">
+                    <h3>দিঘা সমুদ্রতটের বিশেষত্ব</h3>
+                    <p>দিঘা সমুদ্রতট প্রায় ৭ কিলোমিটার দীর্ঘ যা ধীরে ধীরে ঢালু। সমুদ্রের পানি তুলনামূলকভাবে শান্ত এবং সাঁতারের জন্য উপযোগী। বালুতটের বিশালতা এবং পরিষ্কার পরিবেশ এটিকে পরিবারবান্ধব করে তুলেছে।</p>
+                    <p>দিঘায় ঘোড়ায় চড়ে সমুদ্রতট ভ্রমণ, কনকনে জলে সাঁতার, এবং সামুদ্রিক খাবারের দোকানে তাজা মাছ ও চিংড়ি খাওয়ার অভিজ্ঞতা অবিস্মরণীয়।</p>
+                </div>
+            </div>
+            
+            <div id="sightseeing" class="tab-content">
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="মেরিন ড্রাইভ">
+                        <div class="image-label">দিঘার মেরিন ড্রাইভ</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="শঙ্করপুর সৈকত">
+                        <div class="image-label">শঙ্করপুর সৈকত</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1536152471326-642d746f4d6a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="তাজপুর সৈকত">
+                        <div class="image-label">তাজপুর সৈকত</div>
+                    </div>
+                </div>
+                <div class="intro-text bengali-text">
+                    <h3>দিঘার আশেপাশের দর্শনীয় স্থান</h3>
+                    <p><strong>মেরিন ড্রাইভ:</strong> দিঘা থেকে শঙ্করপুর পর্যন্ত বিস্তৃত এই সমুদ্র তটরেখা সমান্তরাল সড়ক অসাধারণ সৌন্দর্যের অধিকারী।</p>
+                    <p><strong>শঙ্করপুর:</strong> দিঘা থেকে ১৪ কিমি দূরে অবস্থিত এই সমুদ্রতট দিঘার চেয়ে বেশি নির্জন ও শান্ত।</p>
+                    <p><strong>তাজপুর:</strong> দিঘা থেকে ৫ কিমি দূরে অবস্থিত এই সমুদ্রতট অপরূপ সূর্যোদয়ের জন্য বিখ্যাত।</p>
+                    <p><strong>উদয়পুরী লেক:</strong> মৎস্যশিকার এবং নৌকা বাইচের জন্য জনপ্রিয় একটি সুন্দর হ্রদ।</p>
+                    <p><strong>আমরাবতী পার্ক:</strong> দিঘার কেন্দ্রস্থলে অবস্থিত একটি সুন্দর পার্ক যেখানে সন্ধ্যায় আলোকসজ্জা দেখতে অনেক পর্যটক আসেন।</p>
+                </div>
+            </div>
+            
+            <div id="hotels" class="tab-content">
+                <h3 style="text-align:center; margin-bottom:30px; color:#0056b3;">দিঘার সেরা হোটেল ও রিসোর্ট</h3>
+                <div class="hotels">
+                    <div class="hotel-card">
+                        <div class="hotel-img">
+                            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="হোটেল সাগর দিঘা">
+                        </div>
+                        <div class="hotel-info">
+                            <h3>হোটেল সাগর দিঘা</h3>
+                            <div class="hotel-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <p class="bengali-text">সৈকত থেকে মাত্র ৫০ মিটার দূরে অবস্থিত, সমুদ্রের দৃশ্য সহ কক্ষ, আধুনিক সুযোগ-সুবিধা সম্বলিত।</p>
+                            <div class="hotel-price">₹২৫০০/রাত</div>
+                            <a href="#" class="btn">বুক করুন</a>
+                        </div>
+                    </div>
+                    
+                    <div class="hotel-card">
+                        <div class="hotel-img">
+                            <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="দিঘা ট্যুরিস্ট লজ">
+                        </div>
+                        <div class="hotel-info">
+                            <h3>দিঘা ট্যুরিস্ট লজ</h3>
+                            <div class="hotel-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="bengali-text">ওল্ড দিঘায় অবস্থিত, ঐতিহ্যবাহী স্থাপত্য, সৈকতের কাছাকাছি, বাজেট বান্ধব বিকল্প।</p>
+                            <div class="hotel-price">₹১৫০০/রাত</div>
+                            <a href="#" class="btn">বুক করুন</a>
+                        </div>
+                    </div>
+                    
+                    <div class="hotel-card">
+                        <div class="hotel-img">
+                            <img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="সী ভিউ রিসোর্ট">
+                        </div>
+                        <div class="hotel-info">
+                            <h3>সী ভিউ রিসোর্ট</h3>
+                            <div class="hotel-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="bengali-text">লাক্সারি সুযোগ-সুবিধা, প্রাইভেট সৈকত অ্যাক্সেস, সুইমিং পুল, এবং স্পা সার্ভিস সহ।</p>
+                            <div class="hotel-price">₹৫০০০/রাত</div>
+                            <a href="#" class="btn">বুক করুন</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="visit-section">
+            <h2 class="section-title">আপনার ভ্রমণের পরিকল্পনা করুন</h2>
+            <div class="visit-info">
+                <p class="bengali-text">দিঘা সারা বছরই পরিদর্শনের জন্য উপযুক্ত, তবে শীতকাল (অক্টোবর থেকে ফেব্রুয়ারি) সবচেয়ে আরামদায়ক সময়। গ্রীষ্মকালেও অনেক পর্যটক আসেন সমুদ্রের শীতল বাতাস উপভোগ করতে।</p>
+                
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h3>অবস্থান</h3>
+                            <p class="bengali-text">দিঘা, পূর্ব মেদিনীপুর, পশ্চিমবঙ্গ</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-train"></i>
+                        </div>
+                        <div>
+                            <h3>কীভাবে যাবেন</h3>
+                            <p class="bengali-text">ট্রেনে: দিঘা রেলওয়ে স্টেশন<br>সড়কপথে: কলকাতা থেকে ৪-৫ ঘন্টা</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div>
+                            <h3>বিশেষ খাবার</h3>
+                            <p class="bengali-text">তাজা সামুদ্রিক মাছ, চিংড়ি মালাইকারী, কাঁকড়া ভুনা</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-shopping-bag"></i>
+                        </div>
+                        <div>
+                            <h3>স্মারিকা</h3>
+                            <p class="bengali-text">শাঁখের সামগ্রী, শোলার কাজ, স্থানীয় হস্তশিল্প</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>দিঘা সৈকত</h3>
+                    <p class="bengali-text">পশ্চিমবঙ্গের হৃদয় এবং বাংলার সবচেয়ে প্রিয় সমুদ্রতট, যেখানে সমুদ্রের গর্জন এবং ঢেউয়ের শব্দ আপনাকে প্রকৃতির কাছে ফিরিয়ে নিয়ে যাবে।</p>
+                </div>
+                <div class="footer-section">
+                    <h3>দ্রুত লিঙ্ক</h3>
+                    <a href="#">দিঘা সম্পর্কে</a>
+                    <a href="#">দর্শনীয় স্থান</a>
+                    <a href="#">হোটেল বুকিং</a>
+                    <a href="#">গ্যালারি</a>
+                </div>
+                <div class="footer-section">
+                    <h3>যোগাযোগ</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> দিঘা, পূর্ব মেদিনীপুর, পশ্চিমবঙ্গ</p>
+                    <p><i class="fas fa-phone"></i> +৯১ ৯৮৭৬৫ ৪৩২১০</p>
+                    <p><i class="fas fa-envelope"></i> info@dighatourism.gov.in</p>
+                    <p><i class="fas fa-globe"></i> www.dighabeachwestbengal.com</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p class="bengali-text">© ২০২৩ দিঘা পর্যটন বিভাগ, পশ্চিমবঙ্গ সরকার। সর্বস্বত্ব সংরক্ষিত।</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Tab functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all buttons and contents
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked button and corresponding content
+                    this.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // Image gallery modal
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            galleryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const imgSrc = this.querySelector('img').src;
+                    const imgLabel = this.querySelector('.image-label').textContent;
+                    
+                    // Create modal view
+                    const modal = document.createElement('div');
+                    modal.style.position = 'fixed';
+                    modal.style.top = '0';
+                    modal.style.left = '0';
+                    modal.style.width = '100%';
+                    modal.style.height = '100%';
+                    modal.style.backgroundColor = 'rgba(0,0,0,0.9)';
+                    modal.style.display = 'flex';
+                    modal.style.flexDirection = 'column';
+                    modal.style.justifyContent = 'center';
+                    modal.style.alignItems = 'center';
+                    modal.style.zIndex = '1000';
+                    
+                    const modalImg = document.createElement('img');
+                    modalImg.src = imgSrc;
+                    modalImg.style.maxWidth = '90%';
+                    modalImg.style.maxHeight = '70%';
+                    modalImg.style.borderRadius = '10px';
+                    modalImg.style.boxShadow = '0 5px 25px rgba(0,0,0,0.5)';
+                    
+                    const modalLabel = document.createElement('div');
+                    modalLabel.textContent = imgLabel;
+                    modalLabel.style.color = 'white';
+                    modalLabel.style.marginTop = '20px';
+                    modalLabel.style.fontSize = '1.2rem';
+                    modalLabel.style.textAlign = 'center';
+                    modalLabel.style.padding = '0 20px';
+                    
+                    const closeBtn = document.createElement('button');
+                    closeBtn.innerHTML = '&times;';
+                    closeBtn.style.position = 'absolute';
+                    closeBtn.style.top = '20px';
+                    closeBtn.style.right = '30px';
+                    closeBtn.style.background = 'none';
+                    closeBtn.style.border = 'none';
+                    closeBtn.style.color = 'white';
+                    closeBtn.style.fontSize = '3rem';
+                    closeBtn.style.cursor = 'pointer';
+                    
+                    modal.appendChild(closeBtn);
+                    modal.appendChild(modalImg);
+                    modal.appendChild(modalLabel);
+                    document.body.appendChild(modal);
+                    
+                    // Close modal on click
+                    modal.addEventListener('click', function(e) {
+                        if (e.target === modal || e.target === closeBtn) {
+                            document.body.removeChild(modal);
+                        }
+                    });
+                });
+            });
+            
+            // Add animation to hotel cards on scroll
+            const hotelCards = document.querySelectorAll('.hotel-card');
+            
+            const observerOptions = {
+                threshold: 0.2,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            hotelCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s, transform 0.5s';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
