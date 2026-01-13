@@ -3,6 +3,626 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>জিম ক্লাব ট্যুরিজম - পোর্টাল</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: "Hind Siliguri", Arial, sans-serif; 
+            background-color: #1a252f; 
+            color: #eee; 
+            overflow: hidden;
+        }
+
+        /* Navbar */
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+            border-bottom: 3px solid #f8b400;
+        }
+        header h1 { 
+            font-size: 22px; 
+            font-weight: 700; 
+            letter-spacing: 0.5px;
+            color: #f8b400;
+        }
+        .logo-text {
+            color: #4a9cdb;
+        }
+        .datetime { 
+            font-size: 14px; 
+            color: #ecf0f1; 
+            font-weight: 500;
+        }
+        .ticker {
+            background: linear-gradient(90deg, #f8b400 0%, #ffcc33 100%); 
+            color: #2c3e50; 
+            font-size: 14px; 
+            padding: 6px 10px;
+            overflow: hidden; 
+            white-space: nowrap; 
+            position: relative; 
+            font-weight: 600;
+        }
+        .ticker span {
+            position: absolute; 
+            width: 100%; 
+            animation: scroll 20s linear infinite;
+        }
+        @keyframes scroll { 
+            0% { left: 100%; } 
+            100% { left: -100%; } 
+        }
+
+        /* Layout */
+        .container { 
+            display: flex; 
+            height: calc(100vh - 85px);
+        }
+        aside {
+            width: 250px; 
+            background: #2c3e50; 
+            border-right: 2px solid #34495e;
+            display: flex; 
+            flex-direction: column; 
+            transition: width 0.3s ease;
+        }
+        aside h2 {
+            font-size: 16px; 
+            color: #f8b400; 
+            padding: 20px 15px 10px;
+            border-bottom: 1px solid #34495e; 
+            text-transform: uppercase;
+            font-weight: 700;
+            background-color: #1a252f;
+        }
+        aside a {
+            color: #ecf0f1; 
+            text-decoration: none; 
+            padding: 15px 20px;
+            border-left: 4px solid transparent; 
+            display: block; 
+            transition: all 0.3s;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        aside a:hover {
+            background: rgba(248, 180, 0, 0.1); 
+            border-left-color: #f8b400;
+            transform: translateX(5px);
+        }
+        aside a.active {
+            background: rgba(248, 180, 0, 0.15); 
+            border-left-color: #f8b400;
+            color: #f8b400;
+            font-weight: 600;
+        }
+        aside a i {
+            margin-right: 12px;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* iframe */
+        main { 
+            flex: 1; 
+            background: #1a252f; 
+            position: relative;
+        }
+        iframe {
+            width: 100%; 
+            height: 100%; 
+            border: none;
+            background: #1a252f; 
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn { 
+            from { opacity: 0; } 
+            to { opacity: 1; } 
+        }
+
+        /* Loading indicator */
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            display: none;
+        }
+        .loader {
+            border: 5px solid #34495e;
+            border-top: 5px solid #f8b400;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            aside { width: 70px; }
+            aside h2, aside a span { display: none; }
+            aside a { text-align: center; padding: 15px 10px; }
+            aside a i { margin-right: 0; font-size: 20px; }
+            header h1 { font-size: 18px; }
+            .datetime { font-size: 12px; }
+        }
+
+        /* Content style for iframe */
+        .iframe-content {
+            font-family: 'Hind Siliguri', sans-serif;
+            color: #333;
+            background: #fff;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <h1>জিম ক্লাব <span class="logo-text">ট্যুরিজম</span> পোর্টাল</h1>
+        <div class="datetime" id="datetime"></div>
+    </header>
+
+    <div class="ticker">
+        <span>🚌 আসন্ন ভ্রমণ: দুধিয়া - ৩১ জানুয়ারি ২০২৫ | 🏖️ দিঘা ভ্রমণ - ১৫ ফেব্রুয়ারি ২০২৫ | ⛰️ দার্জিলিং ট্যুর - ২৮ ফেব্রুয়ারি ২০২৫ | 🌿 সুন্দরবন অভিযান - ১০ মার্চ ২০২৫</span>
+    </div>
+
+    <div class="container">
+        <aside>
+            <h2>ভ্রমণ মেনু</h2>
+            <a href="#" class="active" onclick="loadPage('dudhia.html', this)">
+                <i class="fas fa-mountain"></i>
+                <span>দুধিয়া ভ্রমণ</span>
+            </a>
+            <a href="#" onclick="loadPage('digha.html', this)">
+                <i class="fas fa-umbrella-beach"></i>
+                <span>দিঘা ভ্রমণ</span>
+            </a>
+            <a href="#" onclick="loadPage('darjeeling.html', this)">
+                <i class="fas fa-mountain-sun"></i>
+                <span>দার্জিলিং ভ্রমণ</span>
+            </a>
+            <a href="#" onclick="loadPage('sundarban.html', this)">
+                <i class="fas fa-tree"></i>
+                <span>সুন্দরবন ভ্রমণ</span>
+            </a>
+            <a href="#" onclick="loadPage('booking.html', this)">
+                <i class="fas fa-calendar-check"></i>
+                <span>বুকিং</span>
+            </a>
+            <a href="#" onclick="loadPage('agency.html', this)">
+                <i class="fas fa-info-circle"></i>
+                <span>আমাদের সম্পর্কে</span>
+            </a>
+            <a href="#" onclick="loadPage('contact.html', this)">
+                <i class="fas fa-address-book"></i>
+                <span>যোগাযোগ</span>
+            </a>
+            
+            <h2 style="margin-top: auto;">গুরুত্বপূর্ণ</h2>
+            <a href="#" onclick="loadPage('terms.html', this)">
+                <i class="fas fa-file-contract"></i>
+                <span>শর্তাবলী</span>
+            </a>
+            <a href="#" onclick="loadPage('faq.html', this)">
+                <i class="fas fa-question-circle"></i>
+                <span>সচরাচর প্রশ্ন</span>
+            </a>
+        </aside>
+
+        <main>
+            <div class="loading" id="loading">
+                <div class="loader"></div>
+                <p>লোড হচ্ছে...</p>
+            </div>
+            <iframe id="contentFrame" src="dudhia.html" onload="hideLoading()"></iframe>
+        </main>
+    </div>
+
+    <script>
+        // Load page into iframe with loading indicator
+        function loadPage(page, el) {
+            showLoading();
+            document.getElementById('contentFrame').src = page;
+            document.querySelectorAll('aside a').forEach(a => a.classList.remove('active'));
+            el.classList.add('active');
+            
+            // Save last viewed page
+            localStorage.setItem('lastPage', page);
+            localStorage.setItem('lastActive', el.innerHTML);
+        }
+
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+        }
+
+        function hideLoading() {
+            document.getElementById('loading').style.display = 'none';
+        }
+
+        // Live date & time in Bengali
+        function updateDateTime() {
+            const now = new Date();
+            const options = {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true
+            };
+            
+            // Format time in Bengali style (24-hour format)
+            const hours = now.getHours();
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            const formattedHours = hours % 12 || 12;
+            
+            // Bengali month names
+            const bengaliMonths = ['জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 
+                                   'জুলাই', 'আগস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'];
+            const bengaliDays = ['রবিবার', 'সোমবার', 'মঙ্গলবার', 'বুধবার', 'বৃহস্পতিবার', 'শুক্রবার', 'শনিবার'];
+            
+            const day = bengaliDays[now.getDay()];
+            const date = now.getDate();
+            const month = bengaliMonths[now.getMonth()];
+            const year = now.getFullYear();
+            
+            document.getElementById('datetime').innerHTML = 
+                `${day}, ${date} ${month} ${year} | ${formattedHours}:${minutes} ${ampm}`;
+        }
+        
+        // Check and load last viewed page
+        function loadLastPage() {
+            const lastPage = localStorage.getItem('lastPage');
+            const lastActive = localStorage.getItem('lastActive');
+            
+            if (lastPage) {
+                document.getElementById('contentFrame').src = lastPage;
+                document.querySelectorAll('aside a').forEach(a => {
+                    if (a.innerHTML === lastActive) {
+                        a.classList.add('active');
+                    } else {
+                        a.classList.remove('active');
+                    }
+                });
+            }
+        }
+
+        setInterval(updateDateTime, 1000);
+        updateDateTime();
+        // Comment out loadLastPage if you want to always start with dudhia.html
+        // loadLastPage();
+    </script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>জিম ক্লাব ট্যুরিজম - পোর্টাল</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: "Hind Siliguri", Arial, sans-serif; 
+            background-color: #1a252f; 
+            color: #eee; 
+            overflow: hidden;
+        }
+
+        /* Navbar */
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+            border-bottom: 3px solid #f8b400;
+        }
+        header h1 { 
+            font-size: 22px; 
+            font-weight: 700; 
+            letter-spacing: 0.5px;
+            color: #f8b400;
+        }
+        .logo-text {
+            color: #4a9cdb;
+        }
+        .datetime { 
+            font-size: 14px; 
+            color: #ecf0f1; 
+            font-weight: 500;
+        }
+        .ticker {
+            background: linear-gradient(90deg, #f8b400 0%, #ffcc33 100%); 
+            color: #2c3e50; 
+            font-size: 14px; 
+            padding: 6px 10px;
+            overflow: hidden; 
+            white-space: nowrap; 
+            position: relative; 
+            font-weight: 600;
+        }
+        .ticker span {
+            position: absolute; 
+            width: 100%; 
+            animation: scroll 20s linear infinite;
+        }
+        @keyframes scroll { 
+            0% { left: 100%; } 
+            100% { left: -100%; } 
+        }
+
+        /* Layout */
+        .container { 
+            display: flex; 
+            height: calc(100vh - 85px);
+        }
+        aside {
+            width: 250px; 
+            background: #2c3e50; 
+            border-right: 2px solid #34495e;
+            display: flex; 
+            flex-direction: column; 
+            transition: width 0.3s ease;
+        }
+        aside h2 {
+            font-size: 16px; 
+            color: #f8b400; 
+            padding: 20px 15px 10px;
+            border-bottom: 1px solid #34495e; 
+            text-transform: uppercase;
+            font-weight: 700;
+            background-color: #1a252f;
+        }
+        aside a {
+            color: #ecf0f1; 
+            text-decoration: none; 
+            padding: 15px 20px;
+            border-left: 4px solid transparent; 
+            display: block; 
+            transition: all 0.3s;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        aside a:hover {
+            background: rgba(248, 180, 0, 0.1); 
+            border-left-color: #f8b400;
+            transform: translateX(5px);
+        }
+        aside a.active {
+            background: rgba(248, 180, 0, 0.15); 
+            border-left-color: #f8b400;
+            color: #f8b400;
+            font-weight: 600;
+        }
+        aside a i {
+            margin-right: 12px;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* iframe */
+        main { 
+            flex: 1; 
+            background: #1a252f; 
+            position: relative;
+        }
+        iframe {
+            width: 100%; 
+            height: 100%; 
+            border: none;
+            background: #1a252f; 
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn { 
+            from { opacity: 0; } 
+            to { opacity: 1; } 
+        }
+
+        /* Loading indicator */
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            display: none;
+        }
+        .loader {
+            border: 5px solid #34495e;
+            border-top: 5px solid #f8b400;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            aside { width: 70px; }
+            aside h2, aside a span { display: none; }
+            aside a { text-align: center; padding: 15px 10px; }
+            aside a i { margin-right: 0; font-size: 20px; }
+            header h1 { font-size: 18px; }
+            .datetime { font-size: 12px; }
+        }
+
+        /* Content style for iframe */
+        .iframe-content {
+            font-family: 'Hind Siliguri', sans-serif;
+            color: #333;
+            background: #fff;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <h1>জিম ক্লাব <span class="logo-text">ট্যুরিজম</span> পোর্টাল</h1>
+        <div class="datetime" id="datetime"></div>
+    </header>
+
+    <div class="ticker">
+        <span>🚌 আসন্ন ভ্রমণ: দুধিয়া - ৩১ জানুয়ারি ২০২৫ | 🏖️ দিঘা ভ্রমণ - ১৫ ফেব্রুয়ারি ২০২৫ | ⛰️ দার্জিলিং ট্যুর - ২৮ ফেব্রুয়ারি ২০২৫ | 🌿 সুন্দরবন অভিযান - ১০ মার্চ ২০২৫</span>
+    </div>
+
+    <div class="container">
+        <aside>
+            <h2>ভ্রমণ মেনু</h2>
+            <a href="#" class="active" onclick="loadPage('dudhia.html', this)">
+                <i class="fas fa-mountain"></i>
+                <span>দুধিয়া ভ্রমণ</span>
+            </a>
+            <a href="#" onclick="loadPage('digha.html', this)">
+                <i class="fas fa-umbrella-beach"></i>
+                <span>দিঘা ভ্রমণ</span>
+            </a>
+            <a href="#" onclick="loadPage('darjeeling.html', this)">
+                <i class="fas fa-mountain-sun"></i>
+                <span>দার্জিলিং ভ্রমণ</span>
+            </a>
+            <a href="#" onclick="loadPage('sundarban.html', this)">
+                <i class="fas fa-tree"></i>
+                <span>সুন্দরবন ভ্রমণ</span>
+            </a>
+            <a href="#" onclick="loadPage('booking.html', this)">
+                <i class="fas fa-calendar-check"></i>
+                <span>বুকিং</span>
+            </a>
+            <a href="#" onclick="loadPage('agency.html', this)">
+                <i class="fas fa-info-circle"></i>
+                <span>আমাদের সম্পর্কে</span>
+            </a>
+            <a href="#" onclick="loadPage('contact.html', this)">
+                <i class="fas fa-address-book"></i>
+                <span>যোগাযোগ</span>
+            </a>
+            
+            <h2 style="margin-top: auto;">গুরুত্বপূর্ণ</h2>
+            <a href="#" onclick="loadPage('terms.html', this)">
+                <i class="fas fa-file-contract"></i>
+                <span>শর্তাবলী</span>
+            </a>
+            <a href="#" onclick="loadPage('faq.html', this)">
+                <i class="fas fa-question-circle"></i>
+                <span>সচরাচর প্রশ্ন</span>
+            </a>
+        </aside>
+
+        <main>
+            <div class="loading" id="loading">
+                <div class="loader"></div>
+                <p>লোড হচ্ছে...</p>
+            </div>
+            <iframe id="contentFrame" src="dudhia.html" onload="hideLoading()"></iframe>
+        </main>
+    </div>
+
+    <script>
+        // Load page into iframe with loading indicator
+        function loadPage(page, el) {
+            showLoading();
+            document.getElementById('contentFrame').src = page;
+            document.querySelectorAll('aside a').forEach(a => a.classList.remove('active'));
+            el.classList.add('active');
+            
+            // Save last viewed page
+            localStorage.setItem('lastPage', page);
+            localStorage.setItem('lastActive', el.innerHTML);
+        }
+
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+        }
+
+        function hideLoading() {
+            document.getElementById('loading').style.display = 'none';
+        }
+
+        // Live date & time in Bengali
+        function updateDateTime() {
+            const now = new Date();
+            const options = {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true
+            };
+            
+            // Format time in Bengali style (24-hour format)
+            const hours = now.getHours();
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            const formattedHours = hours % 12 || 12;
+            
+            // Bengali month names
+            const bengaliMonths = ['জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 
+                                   'জুলাই', 'আগস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'];
+            const bengaliDays = ['রবিবার', 'সোমবার', 'মঙ্গলবার', 'বুধবার', 'বৃহস্পতিবার', 'শুক্রবার', 'শনিবার'];
+            
+            const day = bengaliDays[now.getDay()];
+            const date = now.getDate();
+            const month = bengaliMonths[now.getMonth()];
+            const year = now.getFullYear();
+            
+            document.getElementById('datetime').innerHTML = 
+                `${day}, ${date} ${month} ${year} | ${formattedHours}:${minutes} ${ampm}`;
+        }
+        
+        // Check and load last viewed page
+        function loadLastPage() {
+            const lastPage = localStorage.getItem('lastPage');
+            const lastActive = localStorage.getItem('lastActive');
+            
+            if (lastPage) {
+                document.getElementById('contentFrame').src = lastPage;
+                document.querySelectorAll('aside a').forEach(a => {
+                    if (a.innerHTML === lastActive) {
+                        a.classList.add('active');
+                    } else {
+                        a.classList.remove('active');
+                    }
+                });
+            }
+        }
+
+        setInterval(updateDateTime, 1000);
+        updateDateTime();
+        // Comment out loadLastPage if you want to always start with dudhia.html
+        // loadLastPage();
+    </script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>জিম ক্লাব ট্যুরিজম - আসন্ন ভ্রমণ: দুধিয়া</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -946,4 +1566,5 @@
     </script>
 </body>
 </html>
+
 
