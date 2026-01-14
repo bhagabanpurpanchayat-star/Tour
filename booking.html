@@ -924,25 +924,33 @@
                 </div>
                 
                 <div class="bus-layout">
-                    <!-- Top Row: Seats 45-49 -->
+                    <!-- Top Row: Seats 43-49 -->
                     <div class="top-seats-row">
-                        <div class="seat" id="seat-45" data-seat="45">
+                        <div class="seat" id="seat-43" data-seat="43" data-price="1100">
+                            <div class="seat-number">43</div>
+                            <div class="seat-price">₹1100</div>
+                        </div>
+                        <div class="seat" id="seat-44" data-seat="44" data-price="1100">
+                            <div class="seat-number">44</div>
+                            <div class="seat-price">₹1100</div>
+                        </div>
+                        <div class="seat" id="seat-45" data-seat="45" data-price="1100">
                             <div class="seat-number">45</div>
                             <div class="seat-price">₹1100</div>
                         </div>
-                        <div class="seat" id="seat-46" data-seat="46">
+                        <div class="seat" id="seat-46" data-seat="46" data-price="1100">
                             <div class="seat-number">46</div>
                             <div class="seat-price">₹1100</div>
                         </div>
-                        <div class="seat" id="seat-47" data-seat="47">
+                        <div class="seat" id="seat-47" data-seat="47" data-price="1100">
                             <div class="seat-number">47</div>
                             <div class="seat-price">₹1100</div>
                         </div>
-                        <div class="seat" id="seat-48" data-seat="48">
+                        <div class="seat" id="seat-48" data-seat="48" data-price="1100">
                             <div class="seat-number">48</div>
                             <div class="seat-price">₹1100</div>
                         </div>
-                        <div class="seat" id="seat-49" data-seat="49">
+                        <div class="seat" id="seat-49" data-seat="49" data-price="1100">
                             <div class="seat-number">49</div>
                             <div class="seat-price">₹1100</div>
                         </div>
@@ -1090,18 +1098,18 @@
                 const seatsContainer = document.getElementById('seats-container');
                 seatsContainer.innerHTML = '';
                 
-                // Create seat layout
+                // Create seat layout - CORRECTED VERSION with seats 15-16
                 const seatRows = [
                     { left: [2, 1], right: [3, 4] },
                     { left: [6, 5], right: [7, 8] },
                     { left: [10, 9], right: [11, 12] },
-                    { type: 'gate', seats: [13, 14] },
-                    { left: [18, 17], right: [19, 20] },
-                    { left: [24, 23], right: [21, 22] },
-                    { left: [28, 27], right: [25, 26] },
-                    { left: [30, 29], right: [31, 32, 33] },
-                    { left: [35, 34], right: [36, 37, 38] },
-                    { left: [39, 40], right: [41, 42, 43, 44] }
+                    { type: 'gate', seats: [13, 14] },  // Gate area seats
+                    { left: [16, 15], right: [17, 18] }, // Seats 15-18 immediately behind gate
+                    { left: [20, 19], right: [21, 22] },
+                    { left: [24, 23], right: [25, 26] },
+                    { left: [28, 27], right: [29, 30, 31] },
+                    { left: [33, 32], right: [34, 35, 36] },
+                    { left: [37, 38], right: [39, 40, 41, 42] }
                 ];
                 
                 // Create each row
@@ -1113,9 +1121,10 @@
                     }
                 });
                 
-                // Initialize all seats tracking
+                // Initialize all seats tracking (including top row seats 43-49)
                 for (let seatNumber = 1; seatNumber <= 49; seatNumber++) {
                     const price = getSeatPrice(seatNumber);
+                    const priceClass = getPriceClass(price);
                     
                     allSeats[seatNumber] = {
                         number: seatNumber,
@@ -1125,7 +1134,18 @@
                         passengerAge: '',
                         element: document.getElementById(`seat-${seatNumber}`) || null
                     };
+                    
+                    // Add price class to top row seats
+                    if (seatNumber >= 43 && seatNumber <= 49) {
+                        const seatElement = document.getElementById(`seat-${seatNumber}`);
+                        if (seatElement) {
+                            seatElement.classList.add(priceClass);
+                        }
+                    }
                 }
+                
+                // Attach event listeners to all seats (including hardcoded top row)
+                attachSeatEventListeners();
             }
             
             // Create a normal seat row
@@ -1194,18 +1214,39 @@
                     <div class="seat-price">₹${price}</div>
                 `;
                 
-                // Add click event
-                seatDiv.addEventListener('click', function() {
-                    handleSeatClick(this, seatNumber, price);
-                });
-                
                 return seatDiv;
+            }
+            
+            // Attach event listeners to all seats
+            function attachSeatEventListeners() {
+                for (let seatNumber = 1; seatNumber <= 49; seatNumber++) {
+                    const seatElement = document.getElementById(`seat-${seatNumber}`);
+                    if (seatElement && !allSeats[seatNumber]?.booked) {
+                        // Remove any existing event listeners by cloning
+                        const newSeatElement = seatElement.cloneNode(true);
+                        if (seatElement.parentNode) {
+                            seatElement.parentNode.replaceChild(newSeatElement, seatElement);
+                        }
+                        
+                        // Update reference
+                        allSeats[seatNumber].element = newSeatElement;
+                        
+                        // Add click event if seat is not booked
+                        if (!allSeats[seatNumber].booked) {
+                            newSeatElement.addEventListener('click', function() {
+                                const seatNum = parseInt(this.getAttribute('data-seat'));
+                                const seatPrice = parseInt(this.getAttribute('data-price'));
+                                handleSeatClick(this, seatNum, seatPrice);
+                            });
+                        }
+                    }
+                }
             }
             
             // Handle seat click
             function handleSeatClick(seatElement, seatNumber, seatPrice) {
                 // Check if seat is already booked
-                if (allSeats[seatNumber].booked) {
+                if (allSeats[seatNumber] && allSeats[seatNumber].booked) {
                     showMessage(`Seat ${seatNumber} is already booked!`, 'error');
                     return;
                 }
@@ -1329,7 +1370,7 @@
                             seatElement.classList.remove('available', 'selected');
                             seatElement.classList.add('booked');
                             
-                            // Remove click event listener
+                            // Remove click event listener by cloning
                             const newSeatElement = seatElement.cloneNode(true);
                             seatElement.parentNode.replaceChild(newSeatElement, seatElement);
                             
@@ -1355,26 +1396,37 @@
                             seatData.passengerAge = '';
                             
                             // Remove booked label and passenger info if they exist
-                            const bookedLabel = seatElement.querySelector('.booked-label');
-                            const passengerInfo = seatElement.querySelector('.passenger-name-display');
+                            const newSeatElement = seatElement.cloneNode(true);
+                            const bookedLabel = newSeatElement.querySelector('.booked-label');
+                            const passengerInfo = newSeatElement.querySelector('.passenger-name-display');
                             if (bookedLabel) bookedLabel.remove();
                             if (passengerInfo) passengerInfo.remove();
                             
                             // Reset to available state
-                            seatElement.classList.remove('booked');
-                            if (!seatElement.classList.contains('selected')) {
-                                seatElement.classList.add('available');
-                            }
+                            newSeatElement.classList.remove('booked', 'selected');
+                            newSeatElement.classList.add('available');
                             
-                            // Ensure click event is attached
-                            if (!seatElement.hasAttribute('data-listener-attached')) {
-                                seatElement.setAttribute('data-listener-attached', 'true');
-                                seatElement.addEventListener('click', function() {
-                                    const seatNum = parseInt(this.getAttribute('data-seat'));
-                                    const seatPrice = parseInt(this.getAttribute('data-price'));
-                                    handleSeatClick(this, seatNum, seatPrice);
-                                });
-                            }
+                            // Update price class
+                            const price = getSeatPrice(seatNumber);
+                            const priceClass = getPriceClass(price);
+                            newSeatElement.className = `seat ${priceClass} available`;
+                            
+                            // Restore data attributes if missing
+                            newSeatElement.setAttribute('data-seat', seatNumber);
+                            newSeatElement.setAttribute('data-price', price);
+                            
+                            // Replace the old element with cleaned up version
+                            seatElement.parentNode.replaceChild(newSeatElement, seatElement);
+                            
+                            // Add click event listener for available seats
+                            newSeatElement.addEventListener('click', function() {
+                                const seatNum = parseInt(this.getAttribute('data-seat'));
+                                const seatPrice = parseInt(this.getAttribute('data-price'));
+                                handleSeatClick(this, seatNum, seatPrice);
+                            });
+                            
+                            // Update reference
+                            allSeats[seatNumber].element = newSeatElement;
                         }
                     }
                 }
@@ -1608,7 +1660,7 @@
                                 passengerInfoDiv.textContent = `${seat.passengerName} (${seat.passengerAge})`;
                                 seatElement.appendChild(passengerInfoDiv);
                                 
-                                // Remove click event
+                                // Remove click event by cloning
                                 seatElement.replaceWith(seatElement.cloneNode(true));
                             }
                         });
