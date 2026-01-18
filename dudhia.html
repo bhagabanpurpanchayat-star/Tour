@@ -305,6 +305,152 @@
             background-color: #ffcc00;
         }
         
+        /* Passenger List Section */
+        .passenger-section {
+            background: linear-gradient(135deg, #1e5799, #2a91d1);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .passenger-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .passenger-header h2 {
+            color: #ffcc00;
+            font-size: 2rem;
+            margin: 0;
+        }
+        
+        .passenger-stats {
+            display: flex;
+            gap: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffcc00;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .passenger-scroll-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            overflow: hidden;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+        
+        .passenger-marquee {
+            display: flex;
+            animation: marqueeScroll 60s linear infinite;
+            white-space: nowrap;
+        }
+        
+        .passenger-marquee.paused {
+            animation-play-state: paused;
+        }
+        
+        .passenger-item {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            padding: 15px;
+            margin-right: 20px;
+            min-width: 250px;
+            flex-shrink: 0;
+            border-left: 4px solid #ffcc00;
+            transition: transform 0.3s, background 0.3s;
+        }
+        
+        .passenger-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.25);
+        }
+        
+        .passenger-seat {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #ffcc00;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .passenger-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .passenger-details {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .passenger-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .control-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .control-btn i {
+            font-size: 1rem;
+        }
+        
+        @keyframes marqueeScroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+        
         .intro {
             display: flex;
             flex-wrap: wrap;
@@ -682,6 +828,20 @@
             .bus-text {
                 font-size: 1rem;
             }
+            
+            .passenger-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .passenger-stats {
+                width: 100%;
+                justify-content: space-around;
+            }
+            
+            .passenger-item {
+                min-width: 200px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -747,6 +907,14 @@
             .bus-text {
                 font-size: 0.8rem;
             }
+            
+            .passenger-item {
+                min-width: 180px;
+            }
+            
+            .stat-value {
+                font-size: 1.4rem;
+            }
         }
     </style>
 </head>
@@ -791,6 +959,59 @@
     </div>
     
     <div class="container">
+        <!-- Passenger List Section -->
+        <section class="passenger-section">
+            <div class="passenger-header">
+                <h2><i class="fas fa-users"></i> যাত্রী তালিকা</h2>
+                <div class="passenger-stats">
+                    <div class="stat-item">
+                        <div class="stat-value" id="total-passengers">0</div>
+                        <div class="stat-label">মোট যাত্রী</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="total-seats">0</div>
+                        <div class="stat-label">সিট সংখ্যা</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="total-fare">0</div>
+                        <div class="stat-label">মোট ভাড়া</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="passenger-scroll-container">
+                <div class="passenger-marquee" id="passenger-marquee">
+                    <!-- Passenger items will be inserted here by JavaScript -->
+                    <div class="passenger-item">
+                        <div class="passenger-seat">
+                            <i class="fas fa-chair"></i>
+                            সিট: লোড হচ্ছে...
+                        </div>
+                        <div class="passenger-name">ডেটা লোড হচ্ছে...</div>
+                        <div class="passenger-details">
+                            <span>অভিভাবক: -</span>
+                            <span>ভাড়া: -</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="passenger-controls">
+                <button class="control-btn" id="pause-btn">
+                    <i class="fas fa-pause"></i>
+                    বিরতি দিন
+                </button>
+                <button class="control-btn" id="play-btn">
+                    <i class="fas fa-play"></i>
+                    চালিয়ে যান
+                </button>
+                <button class="control-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i>
+                    রিফ্রেশ করুন
+                </button>
+            </div>
+        </section>
+        
         <!-- Countdown Clock Section -->
         <section class="countdown-section">
             <h2 class="countdown-title">দূধিয়া ভ্রমণের জন্য কাউন্টডাউন</h2>
@@ -1014,6 +1235,24 @@
     </footer>
     
     <script>
+        // Google Apps Script URL (Deploy as web app first)
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx_dWMK2E8-wEbxzB35ZMtttFFmjRlCAOSI_G2B8i1AVdHSV9XEey0qbBimICPkuSMs/exec';
+        
+        // Sample passenger data (fallback in case Google Sheets fails)
+        const samplePassengers = [
+            { seat: "S-01", name: "অভিষেক ঘোষ", guardian: "প্রদীপ ঘোষ", fare: "₹1500" },
+            { seat: "S-02", name: "সুপ্রিয়া মিত্র", guardian: "সুনীল মিত্র", fare: "₹1500" },
+            { seat: "S-03", name: "রাজদীপ সেন", guardian: "অমিত সেন", fare: "₹1500" },
+            { seat: "S-04", name: "পিয়ালি দাস", guardian: "সুব্রত দাস", fare: "₹1500" },
+            { seat: "S-05", name: "অর্ণব ব্যানার্জী", guardian: "দেবাশিস ব্যানার্জী", fare: "₹1500" },
+            { seat: "S-06", name: "তনুশ্রী চক্রবর্তী", guardian: "সমীর চক্রবর্তী", fare: "₹1500" },
+            { seat: "S-07", name: "ঋত্বিক সরকার", guardian: "পার্থ সরকার", fare: "₹1500" },
+            { seat: "S-08", name: "দীপান্বিতা রায়", guardian: "সুবীর রায়", fare: "₹1500" }
+        ];
+        
+        // Passenger management
+        let passengers = [];
+        
         // Countdown Timer Functionality
         function updateCountdown() {
             // Set the journey date: January 31, 2026 at 10:30 PM
@@ -1043,12 +1282,205 @@
             document.getElementById('seconds').innerHTML = seconds.toString().padStart(2, '0');
         }
         
-        // Initial call and update every second
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
+        // Fetch passenger data using JSONP (CORS compatible)
+        async function fetchPassengerData() {
+            return new Promise((resolve) => {
+                // Create a unique callback name
+                const callbackName = 'handlePassengerData_' + Date.now();
+                
+                // Create callback function
+                window[callbackName] = function(data) {
+                    if (data && data.success && data.passengers) {
+                        passengers = data.passengers;
+                        updatePassengerDisplay();
+                        showNotification('যাত্রী তালিকা সফলভাবে লোড হয়েছে!', 'success');
+                    } else {
+                        // Use sample data as fallback
+                        console.error('Invalid data format:', data);
+                        passengers = samplePassengers;
+                        updatePassengerDisplay();
+                        showNotification('ডেটা ফরম্যাট সমস্যা। নমুনা ডেটা দেখানো হচ্ছে।', 'error');
+                    }
+                    resolve();
+                    
+                    // Clean up
+                    delete window[callbackName];
+                    if (script.parentNode) {
+                        script.parentNode.removeChild(script);
+                    }
+                };
+
+                // Create JSONP script tag
+                const script = document.createElement('script');
+                script.src = GOOGLE_SCRIPT_URL + '?callback=' + callbackName;
+                document.head.appendChild(script);
+
+                // Set timeout for JSONP request
+                setTimeout(() => {
+                    if (window[callbackName]) {
+                        console.warn('JSONP request timed out. Using sample data.');
+                        passengers = samplePassengers;
+                        updatePassengerDisplay();
+                        resolve();
+                        delete window[callbackName];
+                    }
+                }, 10000); // 10 second timeout
+            });
+        }
         
-        // Simple image gallery interaction
+        // Update passenger display
+        function updatePassengerDisplay() {
+            const marquee = document.getElementById('passenger-marquee');
+            const totalPassengersEl = document.getElementById('total-passengers');
+            const totalSeatsEl = document.getElementById('total-seats');
+            const totalFareEl = document.getElementById('total-fare');
+            
+            // Clear existing content
+            marquee.innerHTML = '';
+            
+            // Calculate statistics
+            const totalPassengers = passengers.length;
+            const totalSeats = passengers.length;
+            const totalFare = passengers.reduce((sum, passenger) => {
+                const fareValue = parseInt(passenger.fare?.toString().replace(/[^0-9]/g, '')) || 0;
+                return sum + fareValue;
+            }, 0);
+            
+            // Update statistics
+            totalPassengersEl.textContent = totalPassengers;
+            totalSeatsEl.textContent = totalSeats;
+            totalFareEl.textContent = `₹${totalFare}`;
+            
+            // Create passenger items (duplicate for seamless scrolling)
+            const passengerItems = [...passengers, ...passengers];
+            
+            passengerItems.forEach((passenger) => {
+                const passengerItem = document.createElement('div');
+                passengerItem.className = 'passenger-item';
+                
+                passengerItem.innerHTML = `
+                    <div class="passenger-seat">
+                        <i class="fas fa-chair"></i>
+                        সিট: ${passenger.seat || 'N/A'}
+                    </div>
+                    <div class="passenger-name">${passenger.name || 'Unknown'}</div>
+                    <div class="passenger-details">
+                        <span>অভিভাবক: ${passenger.guardian || 'নাই'}</span>
+                        <span>ভাড়া: ${passenger.fare || '₹0'}</span>
+                    </div>
+                `;
+                
+                marquee.appendChild(passengerItem);
+            });
+            
+            // Restart marquee animation
+            restartMarquee();
+        }
+        
+        // Control marquee animation
+        function restartMarquee() {
+            const marquee = document.getElementById('passenger-marquee');
+            marquee.style.animation = 'none';
+            setTimeout(() => {
+                marquee.style.animation = 'marqueeScroll 60s linear infinite';
+            }, 10);
+        }
+        
+        // Show notification
+        function showNotification(message, type = 'info') {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'error' ? '#ff6b6b' : type === 'success' ? '#2ecc71' : '#1e5799'};
+                color: white;
+                padding: 15px 20px;
+                border-radius: 8px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                z-index: 10000;
+                animation: slideIn 0.3s ease;
+                max-width: 300px;
+            `;
+            
+            notification.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas ${type === 'error' ? 'fa-exclamation-circle' : type === 'success' ? 'fa-check-circle' : 'fa-info-circle'}"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Remove notification after 5 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 5000);
+        }
+        
+        // Add CSS for notifications
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // DOMContentLoaded event
         document.addEventListener('DOMContentLoaded', function() {
+            // Fetch passenger data on load
+            fetchPassengerData();
+            
+            // Initialize countdown
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+            
+            // Event listeners for passenger controls
+            document.getElementById('pause-btn').addEventListener('click', function() {
+                const marquee = document.getElementById('passenger-marquee');
+                marquee.classList.add('paused');
+                marquee.style.animationPlayState = 'paused';
+            });
+            
+            document.getElementById('play-btn').addEventListener('click', function() {
+                const marquee = document.getElementById('passenger-marquee');
+                marquee.classList.remove('paused');
+                marquee.style.animationPlayState = 'running';
+            });
+            
+            document.getElementById('refresh-btn').addEventListener('click', function() {
+                const btn = this;
+                const originalText = btn.innerHTML;
+                
+                // Show loading state
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> লোড হচ্ছে...';
+                btn.disabled = true;
+                
+                // Fetch new data
+                fetchPassengerData().finally(() => {
+                    // Restore button state
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.disabled = false;
+                    }, 1000);
+                });
+            });
+            
+            // Simple image gallery interaction
             const galleryItems = document.querySelectorAll('.gallery-item');
             
             galleryItems.forEach(item => {
@@ -1123,6 +1555,20 @@
                 
                 bus.addEventListener('mouseleave', function() {
                     this.style.animationPlayState = 'running';
+                });
+            }
+            
+            // Pause passenger marquee on hover
+            const passengerMarquee = document.getElementById('passenger-marquee');
+            if (passengerMarquee) {
+                passengerMarquee.addEventListener('mouseenter', function() {
+                    this.style.animationPlayState = 'paused';
+                });
+                
+                passengerMarquee.addEventListener('mouseleave', function() {
+                    if (!this.classList.contains('paused')) {
+                        this.style.animationPlayState = 'running';
+                    }
                 });
             }
         });
